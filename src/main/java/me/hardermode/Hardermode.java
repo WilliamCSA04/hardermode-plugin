@@ -6,6 +6,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Creeper;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -31,11 +32,13 @@ public final class Hardermode extends JavaPlugin implements Listener {
 
     }
 
+    @EventHandler
     public void doubleDamage(EntityDamageByEntityEvent event) {
         double damage = event.getDamage();
         event.setDamage(damage * 0.2);
     }
 
+    @EventHandler
     public void destroyShieldOnCreeperExplosion(EntityDamageByEntityEvent event) {
         boolean isEntityExplosion = event.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION;
         boolean isCreeper = event.getDamager() instanceof Creeper;
