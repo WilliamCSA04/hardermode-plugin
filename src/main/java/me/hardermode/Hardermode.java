@@ -1,11 +1,12 @@
 package me.hardermode;
 
+import me.hardermode.helpers.Helpers;
+import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Creeper;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -14,6 +15,10 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+
+import java.util.Collection;
 
 public final class Hardermode extends JavaPlugin implements Listener {
 
@@ -46,13 +51,8 @@ public final class Hardermode extends JavaPlugin implements Listener {
             if(isPlayer) {
                 Player player = (Player) event.getEntity();
                 if(player.isBlocking()) {
-                    ItemStack shield = null;
                     PlayerInventory inventory = player.getInventory();
-                    if(inventory.getItemInOffHand().getType() == Material.SHIELD) {
-                        shield = inventory.getItemInOffHand();
-                    } else if(inventory.getItemInMainHand().getType() == Material.SHIELD) {
-                        shield = inventory.getItemInMainHand();
-                    }
+                    ItemStack shield = Helpers.getAnItemFromPlayersHand(inventory, Material.SHIELD);
                     if(shield != null) {
                         if(shield.getItemMeta() instanceof Damageable) {
                             Damageable damagedShield = (Damageable) shield.getItemMeta();
@@ -61,6 +61,31 @@ public final class Hardermode extends JavaPlugin implements Listener {
                         }
                     }
 
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onStrayHittingPlayer(EntityDamageByEntityEvent event) {
+        boolean isArrow = event.getDamager() instanceof Arrow;
+        if(isArrow) {
+            Arrow arrow = (Arrow) event.getDamager();
+            boolean isStray = arrow.getShooter() instanceof Stray;
+            if(isStray) {
+                LivingEntity entity = Helpers.castLivingEntity(event.getEntity());
+                Collection<PotionEffect> effects = entity.getActivePotionEffects();
+                for(PotionEffect effect : effects) {
+                    boolean hasSlow = effect.getType().getName() == PotionEffectType.SLOW.getName();
+                    if(hasSlow){
+                        int amplifier = effect.getAmplifier();
+                        int SLOW_MAX_LEVEL = 3;
+                        if(amplifier < SLOW_MAX_LEVEL) {
+                            int amplified = effect.getAmplifier() + 1;
+                            PotionEffect amplifiedEffect = new PotionEffect(PotionEffectType.SLOW, 600, amplified);
+                            amplifiedEffect.apply(entity);
+                        }
+                    }
                 }
             }
         }
