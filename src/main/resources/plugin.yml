@@ -1,0 +1,4 @@
+name: Hardermode
+version: ${project.version}
+main: me.hardermode.Hardermode
+api-version: 1.16
