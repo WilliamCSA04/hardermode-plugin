@@ -9,7 +9,7 @@ public class Buff {
     double health = attribute.getBaseValue();
     double totalHealth = health + (health * buff);
     attribute.setBaseValue(totalHealth);
-    return buff;
+    return totalHealth;
   }
 
 }
