@@ -1,5 +1,6 @@
 package me.hardermode;
 
+import me.hardermode.buff.Buff;
 import me.hardermode.configuration.Configuration;
 import me.hardermode.helpers.Helpers;
 import me.hardermode.loot.Loot;
@@ -41,12 +42,6 @@ public final class Hardermode extends JavaPlugin implements Listener {
     server.getPluginManager().registerEvents(this, this);
     Configuration.startConfiguration(server).configure();
     world = server.getWorlds().get(0);
-  }
-
-  @EventHandler
-  public void doubleDamage(EntityDamageByEntityEvent event) {
-    double damage = event.getDamage();
-    event.setDamage(damage + damage * 0.2);
   }
 
   @EventHandler
@@ -162,11 +157,13 @@ public final class Hardermode extends JavaPlugin implements Listener {
     Monster monster = Helpers.castMonster(event.getEntity());
     if(monster != null) {
       AttributeInstance maxHealthAttribute = monster.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+      AttributeInstance attackDamage = monster.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
       if(maxHealthAttribute != null) {
-        double health = maxHealthAttribute.getBaseValue();
-        double totalHealth = health + (health * 0.3);
-        maxHealthAttribute.setBaseValue(totalHealth);
-        monster.setHealth(totalHealth);
+        double buff = Buff.buffAttribute(maxHealthAttribute, 0.3);
+        monster.setHealth(buff);
+      }
+      if(attackDamage != null) {
+        Buff.buffAttribute(attackDamage, 0.25);
       }
     }
   }
