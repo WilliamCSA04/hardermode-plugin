@@ -106,6 +106,7 @@ public final class Hardermode extends JavaPlugin implements Listener {
       enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 4));
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.BASTION_BRIDGE)) {
       changeToBePresent = 0.05;
+      enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 2));
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.BASTION_HOGLIN_STABLE)) {
       enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 2));
       changeToBePresent = 0.05;
@@ -182,6 +183,6 @@ public final class Hardermode extends JavaPlugin implements Listener {
 
   @Override
   public void onDisable() {
-    System.out.println("Starting plugin - [hardermode]");
+    System.out.println("Ending plugin - [hardermode]");
   }
 }
