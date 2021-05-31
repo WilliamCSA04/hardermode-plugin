@@ -1,6 +1,7 @@
 package me.hardermode;
 
 import me.hardermode.helpers.Helpers;
+import me.hardermode.loot.Loot;
 import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.Server;
@@ -24,98 +25,90 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public final class Hardermode extends JavaPlugin implements Listener {
 
-    private FileConfiguration config = getConfig();
-    private World world;
-    private Server server;
+  private FileConfiguration config = getConfig();
+  private World world;
+  private Server server;
 
-    @Override
-    public void onEnable() {
-        System.out.println("Starting plugin - [hardermode]");
+  @Override
+  public void onEnable() {
+    System.out.println("Starting plugin - [hardermode]");
 
-        server = getServer();
-        server.getPluginManager().registerEvents(this, this);
+    server = getServer();
+    server.getPluginManager().registerEvents(this, this);
 
-        world = server.getWorlds().get(0);
-    }
+    world = server.getWorlds().get(0);
+  }
 
-    @EventHandler
-    public void doubleDamage(EntityDamageByEntityEvent event) {
-        double damage = event.getDamage();
-        event.setDamage(damage + damage * 0.2);
-    }
+  @EventHandler
+  public void doubleDamage(EntityDamageByEntityEvent event) {
+    double damage = event.getDamage();
+    event.setDamage(damage + damage * 0.2);
+  }
 
-    @EventHandler
-    public void onCreeperExplosion(EntityDamageByEntityEvent event) {
-        boolean isCreeperExplosion = event.getDamager() instanceof Creeper;
-        if(isCreeperExplosion) {
-            boolean isPlayer = event.getEntity() instanceof Player;
-            if(isPlayer) {
-                Player player = (Player) event.getEntity();
-                if(player.isBlocking()) {
-                    PlayerInventory inventory = player.getInventory();
-                    ItemStack shield = Helpers.getAnItemFromPlayersHand(inventory, Material.SHIELD);
-                    if(shield != null) {
-                        if(shield.getItemMeta() instanceof Damageable) {
-                            Damageable damagedShield = (Damageable) shield.getItemMeta();
-                            damagedShield.setDamage(750);
-                            shield.setItemMeta((ItemMeta) damagedShield);
-                        }
-                    }
-
-                }
+  @EventHandler
+  public void onCreeperExplosion(EntityDamageByEntityEvent event) {
+    boolean isCreeperExplosion = event.getDamager() instanceof Creeper;
+    if(isCreeperExplosion) {
+      boolean isPlayer = event.getEntity() instanceof Player;
+      if(isPlayer) {
+        Player player = (Player) event.getEntity();
+        if(player.isBlocking()) {
+          PlayerInventory inventory = player.getInventory();
+          ItemStack shield = Helpers.getAnItemFromPlayersHand(inventory, Material.SHIELD);
+          if(shield != null) {
+            if(shield.getItemMeta() instanceof Damageable) {
+              Damageable damagedShield = (Damageable) shield.getItemMeta();
+              damagedShield.setDamage(750);
+              shield.setItemMeta((ItemMeta) damagedShield);
             }
-        }
-    }
+          }
 
-    @EventHandler
-    public void onStrayHittingPlayer(EntityDamageByEntityEvent event) {
-        boolean isArrow = event.getDamager() instanceof Arrow;
-        if(isArrow) {
-            Arrow arrow = (Arrow) event.getDamager();
-            boolean isStray = arrow.getShooter() instanceof Stray;
-            if(isStray) {
-                LivingEntity entity = Helpers.castLivingEntity(event.getEntity());
-                Collection<PotionEffect> effects = entity.getActivePotionEffects();
-                for(PotionEffect effect : effects) {
-                    boolean hasSlow = effect.getType().getName() == PotionEffectType.SLOW.getName();
-                    if(hasSlow){
-                        int amplifier = effect.getAmplifier();
-                        int SLOW_MAX_LEVEL = 3;
-                        if(amplifier < SLOW_MAX_LEVEL) {
-                            int amplified = effect.getAmplifier() + 1;
-                            PotionEffect amplifiedEffect = new PotionEffect(PotionEffectType.SLOW, 600, amplified);
-                            amplifiedEffect.apply(entity);
-                        }
-                    }
-                }
+        }
+      }
+    }
+  }
+
+  @EventHandler
+  public void onStrayHittingPlayer(EntityDamageByEntityEvent event) {
+    boolean isArrow = event.getDamager() instanceof Arrow;
+    if(isArrow) {
+      Arrow arrow = (Arrow) event.getDamager();
+      boolean isStray = arrow.getShooter() instanceof Stray;
+      if(isStray) {
+        LivingEntity entity = Helpers.castLivingEntity(event.getEntity());
+        Collection<PotionEffect> effects = entity.getActivePotionEffects();
+        for(PotionEffect effect : effects) {
+          boolean hasSlow = effect.getType().getName() == PotionEffectType.SLOW.getName();
+          if(hasSlow){
+            int amplifier = effect.getAmplifier();
+            int SLOW_MAX_LEVEL = 3;
+            if(amplifier < SLOW_MAX_LEVEL) {
+              int amplified = effect.getAmplifier() + 1;
+              PotionEffect amplifiedEffect = new PotionEffect(PotionEffectType.SLOW, 600, amplified);
+              amplifiedEffect.apply(entity);
             }
+          }
         }
+      }
     }
+  }
 
-    @EventHandler
-    public void onLootGeneration(LootGenerateEvent event) {
-        ItemStack itemStack = new ItemStack(Material.NETHER_STAR);
-        LootTables desertPyramid = LootTables.DESERT_PYRAMID;
-        System.out.println("desertPyramid.getKey()" + desertPyramid.getKey());
-        System.out.println("event.getLootTable().getKey()" + event.getLootTable().getKey());
-        System.out.println("desertPyramid.getKey() == event.getLootTable().getKey()" + (desertPyramid.getKey().equals(event.getLootTable().getKey())));
+  @EventHandler
+  public void onLootGeneration(LootGenerateEvent event) {
+    ItemStack item = new ItemStack(Material.NETHER_STAR);
+    List<ItemStack> itemList = Arrays.asList(new ItemStack(Material.PLAYER_HEAD), new ItemStack(Material.PLAYER_HEAD));
 
-        if(desertPyramid.getKey().equals(event.getLootTable().getKey())) {
-            System.out.println("YAY");
-            List<ItemStack> items = event.getLoot();
-            items.add(itemStack);
-        }
+    Loot.addItemStackIntoChest(item, event.getLootTable(), LootTables.ABANDONED_MINESHAFT, event.getLoot(), 1);
+    Loot.addMultipleItemStacksIntoChest(itemList, event.getLootTable(), LootTables.ABANDONED_MINESHAFT, event.getLoot(), 1);
 
-    }
+  }
 
-    @Override
-    public void onDisable() {
-        System.out.println("Starting plugin - [hardermode]");
-    }
+  @Override
+  public void onDisable() {
+    System.out.println("Starting plugin - [hardermode]");
+  }
 }
