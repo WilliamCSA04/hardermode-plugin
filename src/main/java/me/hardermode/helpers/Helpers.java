@@ -3,6 +3,7 @@ package me.hardermode.helpers;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -32,11 +33,15 @@ public class Helpers {
     }
 
     public static Player castPlayer(Entity entity) {
-        return entity instanceof  Player ? (Player) entity : null;
+        return entity instanceof Player ? (Player) entity : null;
     }
 
     public static LivingEntity castLivingEntity(Entity entity) {
-        return entity instanceof  LivingEntity ? (LivingEntity) entity : null;
+        return entity instanceof LivingEntity ? (LivingEntity) entity : null;
+    }
+
+    public static Monster castMonster(Entity entity) {
+        return entity instanceof Monster ? (Monster) entity : null;
     }
 
 }

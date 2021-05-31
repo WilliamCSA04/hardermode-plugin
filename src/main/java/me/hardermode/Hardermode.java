@@ -6,10 +6,13 @@ import me.hardermode.loot.Loot;
 import org.bukkit.Material;
 import org.bukkit.Server;
 import org.bukkit.World;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.world.LootGenerateEvent;
 import org.bukkit.inventory.ItemStack;
@@ -152,6 +155,20 @@ public final class Hardermode extends JavaPlugin implements Listener {
       changeToBePresent = 0.1;
     }
     Loot.addItemStackIntoChest(enderEye, event.getLoot(), changeToBePresent);
+  }
+
+  @EventHandler
+  public void onMonsterSpawnBuffIt(CreatureSpawnEvent event) {
+    Monster monster = Helpers.castMonster(event.getEntity());
+    if(monster != null) {
+      AttributeInstance maxHealthAttribute = monster.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+      if(maxHealthAttribute != null) {
+        double health = maxHealthAttribute.getBaseValue();
+        double totalHealth = health + (health * 0.3);
+        maxHealthAttribute.setBaseValue(totalHealth);
+        monster.setHealth(totalHealth);
+      }
+    }
   }
 
   @Override
