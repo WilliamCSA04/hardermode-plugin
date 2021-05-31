@@ -15,6 +15,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.world.LootGenerateEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -177,6 +178,23 @@ public final class Hardermode extends JavaPlugin implements Listener {
       if(shouldSpawnIllusionerInstead) {
         event.setCancelled(true);
         entity.getWorld().spawnEntity(event.getLocation(), EntityType.ILLUSIONER);
+      }
+    }
+  }
+
+  @EventHandler
+  public void onDeathChangeDrops(EntityDeathEvent event) {
+    Entity entity = event.getEntity();
+    double rng = Math.random();
+    if(entity instanceof Husk) {
+      if(rng < 0.1) {
+        ItemStack sand = new ItemStack(Material.SAND);
+        event.getDrops().add(sand);
+      }
+    } else if(entity instanceof Stray) {
+      if(rng < 0.1) {
+        ItemStack ice = new ItemStack(Material.ICE);
+        event.getDrops().add(ice);
       }
     }
   }

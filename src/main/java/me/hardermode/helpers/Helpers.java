@@ -43,5 +43,4 @@ public class Helpers {
     public static Monster castMonster(Entity entity) {
         return entity instanceof Monster ? (Monster) entity : null;
     }
-
 }
