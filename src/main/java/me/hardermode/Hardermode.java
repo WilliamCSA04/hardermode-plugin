@@ -5,20 +5,28 @@ import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.Server;
 import org.bukkit.World;
+import org.bukkit.block.Chest;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.world.LootGenerateEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.loot.LootContext;
+import org.bukkit.loot.LootTable;
+import org.bukkit.loot.LootTables;
+import org.bukkit.loot.Lootable;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Random;
 
 public final class Hardermode extends JavaPlugin implements Listener {
 
@@ -34,7 +42,6 @@ public final class Hardermode extends JavaPlugin implements Listener {
         server.getPluginManager().registerEvents(this, this);
 
         world = server.getWorlds().get(0);
-
     }
 
     @EventHandler
@@ -89,6 +96,22 @@ public final class Hardermode extends JavaPlugin implements Listener {
                 }
             }
         }
+    }
+
+    @EventHandler
+    public void onLootGeneration(LootGenerateEvent event) {
+        ItemStack itemStack = new ItemStack(Material.NETHER_STAR);
+        LootTables desertPyramid = LootTables.DESERT_PYRAMID;
+        System.out.println("desertPyramid.getKey()" + desertPyramid.getKey());
+        System.out.println("event.getLootTable().getKey()" + event.getLootTable().getKey());
+        System.out.println("desertPyramid.getKey() == event.getLootTable().getKey()" + (desertPyramid.getKey().equals(event.getLootTable().getKey())));
+
+        if(desertPyramid.getKey().equals(event.getLootTable().getKey())) {
+            System.out.println("YAY");
+            List<ItemStack> items = event.getLoot();
+            items.add(itemStack);
+        }
+
     }
 
     @Override
