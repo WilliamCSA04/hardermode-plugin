@@ -45,6 +45,12 @@ the duration of the effect will be reset, and the
 slow effect will be increased by 1, capped at
 slowness IV.
 
+Stray also has a 10% chance do drop a [ice](https://minecraft.fandom.com/wiki/Ice).
+
+### Husk
+
+Husk has a 10% chance to drop a sand block.
+
 ## Loot generation
 
 Changes were made on loot generation.
