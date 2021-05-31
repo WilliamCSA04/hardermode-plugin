@@ -7,7 +7,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
+import java.util.Random;
+
 public class Helpers {
+
+    public static int randomIntMinMax(long seed, int min, int max) {
+        Random r = new Random(seed);
+        return r.nextInt(max) + min;
+    }
 
     public static boolean isAnItemOnPlayersHand(PlayerInventory inventory, Material material) {
         boolean isOnMainHand = inventory.getItemInMainHand().getType() == material;

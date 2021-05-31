@@ -9,8 +9,12 @@ import java.util.Random;
 
 public class Loot {
 
-  public static void addItemStackIntoChest(ItemStack item, LootTable lootTable, LootTables lootTablesEnum, List<ItemStack> originalLoot, double chanceToBePresent) {
-    if(lootTable.getKey().equals(lootTablesEnum.getKey())) {
+  public static boolean isSameLootTableOn(LootTable lootTable, LootTables lootTables) {
+    return lootTable.getKey().equals(lootTables.getKey());
+  }
+
+  public static void addItemStackIntoChest(ItemStack item, List<ItemStack> originalLoot, double chanceToBePresent) {
+    if(item.getAmount() > 0) {
       boolean isPresent = Math.random() <= chanceToBePresent;
       if(isPresent) {
         originalLoot.add(item);
@@ -18,12 +22,10 @@ public class Loot {
     }
   }
 
-  public static void addMultipleItemStacksIntoChest(List<ItemStack> items, LootTable lootTable, LootTables lootTablesEnum, List<ItemStack> originalLoot, double chanceToBePresent) {
-    if(lootTable.getKey().equals(lootTablesEnum.getKey())) {
-      boolean isPresent = Math.random() <= chanceToBePresent;
-      if(isPresent) {
-        originalLoot.addAll(items);
-      }
+  public static void addMultipleItemStacksIntoChest(List<ItemStack> items, List<ItemStack> originalLoot, double chanceToBePresent) {
+    boolean isPresent = Math.random() <= chanceToBePresent;
+    if(isPresent) {
+      originalLoot.addAll(items);
     }
   }
 
