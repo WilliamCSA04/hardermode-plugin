@@ -1,12 +1,11 @@
 package me.hardermode;
 
+import me.hardermode.configuration.Configuration;
 import me.hardermode.helpers.Helpers;
 import me.hardermode.loot.Loot;
-import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.Server;
 import org.bukkit.World;
-import org.bukkit.block.Chest;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -17,10 +16,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.loot.LootContext;
 import org.bukkit.loot.LootTable;
 import org.bukkit.loot.LootTables;
-import org.bukkit.loot.Lootable;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -39,7 +36,7 @@ public final class Hardermode extends JavaPlugin implements Listener {
 
     server = getServer();
     server.getPluginManager().registerEvents(this, this);
-
+    Configuration.startConfiguration(server).configure();
     world = server.getWorlds().get(0);
   }
 
