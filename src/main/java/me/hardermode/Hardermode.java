@@ -168,6 +168,18 @@ public final class Hardermode extends JavaPlugin implements Listener {
     }
   }
 
+  @EventHandler
+  public void onIllagerSpawnReplaceByIllusioner(CreatureSpawnEvent event) {
+    Entity entity = event.getEntity();
+    if(entity instanceof Illager && !(entity instanceof Spellcaster)) {
+      boolean shouldSpawnIllusionerInstead = Math.random() < 0.1;
+      if(shouldSpawnIllusionerInstead) {
+        event.setCancelled(true);
+        entity.getWorld().spawnEntity(event.getLocation(), EntityType.ILLUSIONER);
+      }
+    }
+  }
+
   @Override
   public void onDisable() {
     System.out.println("Starting plugin - [hardermode]");
