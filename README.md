@@ -63,7 +63,7 @@ on any dimension.
   - | Location      | Spawn Rate    | Amount |
     | ------------- |:-------------:| -----:|
     | Mineshaft     | 1% | 1-3 |
-    | Bastion Treasure | 10% |  1-4  |
+    | Bastion Treasure | 40% |  1-4  |
     | Bastion Bridge | 5% | 1-2 |
     | Bastion Hoglin Stable | 5% | 1-2 |
     | Buried Treasure | 2% | 1-2 |
@@ -71,14 +71,14 @@ on any dimension.
     | Desert Pyramid | 1% | 1-2 |
     | Igloo | 5% | 1 |
     | Jungle Temple | 4% | 1-3 |
-    | Nether Fortress | 20% | 1-5 |
+    | Nether Fortress | 30% | 1-5 |
     | Pillager Outpost | 5% | 1-2 |
     | Ruined Portal | 1% | 1-3 |
     | Shipwreck Treasure | 7% | 1-2 |
     | Shipwreck Supply | 3% | 1-3 |
     | Simple Dungeon | 1% | 1 |
     | Underwater big ruin | 8% | 1-2 |
-    | Woodland Mansion | 10% | 1-5 |
+    | Woodland Mansion | 15% | 1-5 |
   
 ## Recipes
 

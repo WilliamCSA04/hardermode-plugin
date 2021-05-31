@@ -103,7 +103,7 @@ public final class Hardermode extends JavaPlugin implements Listener {
       enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 3));
       changeToBePresent = 0.01;
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.BASTION_TREASURE)) {
-      changeToBePresent = 0.1;
+      changeToBePresent = 0.4;
       enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 4));
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.BASTION_BRIDGE)) {
       changeToBePresent = 0.05;
@@ -128,7 +128,7 @@ public final class Hardermode extends JavaPlugin implements Listener {
       changeToBePresent = 0.04;
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.NETHER_BRIDGE)) {
       enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 5));
-      changeToBePresent = 0.2;
+      changeToBePresent = 0.3;
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.PILLAGER_OUTPOST)) {
       enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 2));
       changeToBePresent = 0.05;
@@ -149,7 +149,7 @@ public final class Hardermode extends JavaPlugin implements Listener {
       changeToBePresent = 0.08;
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.WOODLAND_MANSION)) {
       enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 5));
-      changeToBePresent = 0.1;
+      changeToBePresent = 0.15;
     }
     Loot.addItemStackIntoChest(enderEye, event.getLoot(), changeToBePresent);
   }
