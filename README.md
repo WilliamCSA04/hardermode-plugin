@@ -86,3 +86,6 @@ Some recipes have been changed:
 
 - Eye of Ender is no longer craftable and can
 only be found by looting chests.
+- Enchanted Golden Apple are now craftable with emerald
+  block, nether star, golden apple and lapiz block.
+  ![Enchanted Golden Apple craft](./assets/Enchanted_golden_apple_craft.png) 
