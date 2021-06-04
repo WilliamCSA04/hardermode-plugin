@@ -32,14 +32,22 @@ public class Helpers {
     return null;
   }
 
+  /**
+   * @deprecated use {@link #cast} instead
+   * */
   public static Player castPlayer(Entity entity) {
     return entity instanceof Player ? (Player) entity : null;
   }
 
+  /**
+   * @deprecated use {@link #cast} instead
+   * */
   public static LivingEntity castLivingEntity(Entity entity) {
     return entity instanceof LivingEntity ? (LivingEntity) entity : null;
   }
-
+  /**
+  * @deprecated use {@link #cast} instead
+  * */
   public static Monster castMonster(Entity entity) {
     return entity instanceof Monster ? (Monster) entity : null;
   }
