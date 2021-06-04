@@ -21,11 +21,15 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.loot.LootTable;
 import org.bukkit.loot.LootTables;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.potion.PotionType;
 
 import java.util.*;
 
@@ -155,6 +159,18 @@ public final class Hardermode extends JavaPlugin implements Listener {
   }
 
   @EventHandler
+  public void onSpawnNormalSkeleton(CreatureSpawnEvent event) {
+    Skeleton skeleton = Helpers.cast(event.getEntity(), Skeleton.class);
+    if(skeleton != null) {
+      boolean isStray = skeleton instanceof Stray;
+      boolean isWitherSkeleton = skeleton instanceof WitherSkeleton;
+      if(!isStray && !isWitherSkeleton) {
+        skeleton.setMetadata("PoisonArrows", new FixedMetadataValue(this, true));
+      }
+    }
+  }
+
+  @EventHandler
   public void onMonsterSpawnBuffIt(CreatureSpawnEvent event) {
     Monster monster = Helpers.castMonster(event.getEntity());
     if(monster != null) {
@@ -191,10 +207,31 @@ public final class Hardermode extends JavaPlugin implements Listener {
         ItemStack sand = new ItemStack(Material.SAND);
         event.getDrops().add(sand);
       }
-    } else if(entity instanceof Stray) {
-      if(rng < 0.1) {
-        ItemStack ice = new ItemStack(Material.ICE);
-        event.getDrops().add(ice);
+    } else if(entity instanceof Skeleton) {
+      if(entity.getMetadata("PoisonArrows").get(0).asBoolean()) {
+        ItemStack tippedArrow = new ItemStack(Material.TIPPED_ARROW);
+        ItemMeta tippedArrowMeta = tippedArrow.getItemMeta();
+        if(tippedArrowMeta != null) {
+          PotionMeta potionMeta = Helpers.cast(tippedArrowMeta, PotionMeta.class);
+          if(potionMeta != null) {
+            long seed = world.getSeed();
+            int ticks = Helpers.randomIntMinMax(seed, 100, 900);
+            Random random = new Random(seed);
+            int amplifier = random.nextInt(5);
+            PotionEffect poison = new PotionEffect(PotionEffectType.POISON, ticks, amplifier);
+            potionMeta.addCustomEffect(poison, true);
+            potionMeta.setBasePotionData(new PotionData(PotionType.POISON));
+            if(tippedArrow.setItemMeta(potionMeta)) {
+              event.getDrops().add(tippedArrow);
+            }
+          }
+        }
+      }
+      if(entity instanceof Stray) {
+        if(rng < 0.1) {
+          ItemStack ice = new ItemStack(Material.ICE);
+          event.getDrops().add(ice);
+        }
       }
     }
   }
