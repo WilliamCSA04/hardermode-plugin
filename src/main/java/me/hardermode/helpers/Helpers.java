@@ -12,35 +12,43 @@ import java.util.Random;
 
 public class Helpers {
 
-    public static int randomIntMinMax(long seed, int min, int max) {
-        Random r = new Random(seed);
-        return r.nextInt(max) + min;
-    }
+  public static int randomIntMinMax(long seed, int min, int max) {
+    Random r = new Random(seed);
+    return r.nextInt(max) + min;
+  }
 
-    public static boolean isAnItemOnPlayersHand(PlayerInventory inventory, Material material) {
-        boolean isOnMainHand = inventory.getItemInMainHand().getType() == material;
-        boolean isOnOffHand = inventory.getItemInOffHand().getType() == material;
-        return isOnMainHand || isOnOffHand;
-    }
+  public static boolean isAnItemOnPlayersHand(PlayerInventory inventory, Material material) {
+    boolean isOnMainHand = inventory.getItemInMainHand().getType() == material;
+    boolean isOnOffHand = inventory.getItemInOffHand().getType() == material;
+    return isOnMainHand || isOnOffHand;
+  }
 
-    public static ItemStack getAnItemFromPlayersHand(PlayerInventory inventory, Material material) {
-        if(inventory.getItemInMainHand().getType() == material) {
-            return inventory.getItemInMainHand();
-        } else if(inventory.getItemInOffHand().getType() == material) {
-            return inventory.getItemInOffHand();
-        }
-        return null;
+  public static ItemStack getAnItemFromPlayersHand(PlayerInventory inventory, Material material) {
+    if(inventory.getItemInMainHand().getType() == material) {
+      return inventory.getItemInMainHand();
+    } else if(inventory.getItemInOffHand().getType() == material) {
+      return inventory.getItemInOffHand();
     }
+    return null;
+  }
 
-    public static Player castPlayer(Entity entity) {
-        return entity instanceof Player ? (Player) entity : null;
-    }
+  public static Player castPlayer(Entity entity) {
+    return entity instanceof Player ? (Player) entity : null;
+  }
 
-    public static LivingEntity castLivingEntity(Entity entity) {
-        return entity instanceof LivingEntity ? (LivingEntity) entity : null;
-    }
+  public static LivingEntity castLivingEntity(Entity entity) {
+    return entity instanceof LivingEntity ? (LivingEntity) entity : null;
+  }
 
-    public static Monster castMonster(Entity entity) {
-        return entity instanceof Monster ? (Monster) entity : null;
+  public static Monster castMonster(Entity entity) {
+    return entity instanceof Monster ? (Monster) entity : null;
+  }
+
+  public static <T, K> K cast(T toCast) {
+    try{
+      return (K) toCast;
+    } catch(ClassCastException e) {
+      return null;
     }
+  }
 }
