@@ -52,9 +52,9 @@ public class Helpers {
     return entity instanceof Monster ? (Monster) entity : null;
   }
 
-  public static <T, K> K cast(T toCast) {
+  public static <T, K> K cast(T toCast, Class<K> klass) {
     try{
-      return (K) toCast;
+      return klass.cast(toCast);
     } catch(ClassCastException e) {
       return null;
     }
