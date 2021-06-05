@@ -14,6 +14,26 @@ import java.util.Random;
 
 public class TippedArrow {
 
+  public enum Variant {
+    POISON,
+    SPECTRAL,
+    REGEN,
+    SWIFTNESS,
+    FIRE_RES,
+    HEALING,
+    NIGHT_VISION,
+    WEAKNESS,
+    STRENGTH,
+    SLOWNESS,
+    LEAPING,
+    HARMING,
+    WATER_BREATHING,
+    INVISIBILITY,
+    DECAY,
+    TURTLE_MASTER,
+    SLOW_FALLING
+  }
+
   public static ItemStack tippedArrowBuilder(PotionEffectType potionEffectType, PotionType potionType, int ticks, int amplifier) {
     ItemStack tippedArrow = new ItemStack(Material.TIPPED_ARROW);
     ItemMeta tippedArrowMeta = tippedArrow.getItemMeta();
