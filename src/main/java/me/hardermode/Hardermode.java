@@ -26,6 +26,7 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.loot.LootTable;
 import org.bukkit.loot.LootTables;
 import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
@@ -166,7 +167,16 @@ public final class Hardermode extends JavaPlugin implements Listener {
       boolean isStray = skeleton instanceof Stray;
       boolean isWitherSkeleton = skeleton instanceof WitherSkeleton;
       if(!isStray && !isWitherSkeleton) {
-        skeleton.setMetadata("PoisonArrows", new FixedMetadataValue(this, true));
+        boolean spawnWithSpecialArrow = Math.random() < 0.15;
+        if(spawnWithSpecialArrow) {
+          List<String> arrows = new ArrayList<>();
+          arrows.add(TippedArrow.Variant.DECAY.toString());
+          arrows.add(TippedArrow.Variant.POISON.toString());
+          arrows.add(TippedArrow.Variant.HARMING.toString());
+          arrows.add(TippedArrow.Variant.WEAKNESS.toString());
+          int position = new Random().nextInt(arrows.size());
+          skeleton.setMetadata("SpecialArrow", new FixedMetadataValue(this, arrows.get(position)));
+        }
       }
     }
   }
@@ -209,13 +219,30 @@ public final class Hardermode extends JavaPlugin implements Listener {
         event.getDrops().add(sand);
       }
     } else if(entity instanceof Skeleton) {
-      if(entity.getMetadata("PoisonArrows").get(0).asBoolean()) {
+      List<MetadataValue> metadataList = entity.getMetadata("SpecialArrow");
+      if(metadataList.size() > 0) {
+        String skeletonSpecialArrow = metadataList.get(0).asString();
+        System.out.println("HARDERMODE = " + skeletonSpecialArrow);
         long seed = world.getSeed();
         int ticks = Helpers.randomIntMinMax(seed, 100, 900);
         Random random = new Random(seed);
         int amplifier = random.nextInt(5);
-        ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.POISON, PotionType.POISON, ticks, amplifier);
-        event.getDrops().add(tippedArrow);
+        if(TippedArrow.Variant.POISON.toString().equals(skeletonSpecialArrow)) {
+          ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.POISON, PotionType.POISON, ticks, amplifier);
+          event.getDrops().add(tippedArrow);
+        } else if(TippedArrow.Variant.DECAY.toString().equals(skeletonSpecialArrow)) {
+          ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.WITHER, PotionType.UNCRAFTABLE, ticks, amplifier);
+          ItemMeta tippedArrowItemMeta = tippedArrow.getItemMeta();
+          tippedArrowItemMeta.setDisplayName("Withering arrow");
+          tippedArrow.setItemMeta(tippedArrowItemMeta);
+          event.getDrops().add(tippedArrow);
+        } else if(TippedArrow.Variant.HARMING.toString().equals(skeletonSpecialArrow)) {
+          ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.HARM, PotionType.INSTANT_DAMAGE, ticks, amplifier);
+          event.getDrops().add(tippedArrow);
+        } else if(TippedArrow.Variant.WEAKNESS.toString().equals(skeletonSpecialArrow)) {
+          ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.WEAKNESS, PotionType.WEAKNESS, ticks, amplifier);
+          event.getDrops().add(tippedArrow);
+        }
       }
       if(entity instanceof Stray) {
         if(rng < 0.1) {
