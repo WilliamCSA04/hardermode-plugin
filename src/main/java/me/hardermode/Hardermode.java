@@ -4,6 +4,7 @@ import me.hardermode.buff.Buff;
 import me.hardermode.configuration.Configuration;
 import me.hardermode.helpers.Helpers;
 import me.hardermode.loot.Loot;
+import me.hardermode.tippedarrow.TippedArrow;
 import org.bukkit.Material;
 import org.bukkit.Server;
 import org.bukkit.World;
@@ -209,23 +210,12 @@ public final class Hardermode extends JavaPlugin implements Listener {
       }
     } else if(entity instanceof Skeleton) {
       if(entity.getMetadata("PoisonArrows").get(0).asBoolean()) {
-        ItemStack tippedArrow = new ItemStack(Material.TIPPED_ARROW);
-        ItemMeta tippedArrowMeta = tippedArrow.getItemMeta();
-        if(tippedArrowMeta != null) {
-          PotionMeta potionMeta = Helpers.cast(tippedArrowMeta, PotionMeta.class);
-          if(potionMeta != null) {
-            long seed = world.getSeed();
-            int ticks = Helpers.randomIntMinMax(seed, 100, 900);
-            Random random = new Random(seed);
-            int amplifier = random.nextInt(5);
-            PotionEffect poison = new PotionEffect(PotionEffectType.POISON, ticks, amplifier);
-            potionMeta.addCustomEffect(poison, true);
-            potionMeta.setBasePotionData(new PotionData(PotionType.POISON));
-            if(tippedArrow.setItemMeta(potionMeta)) {
-              event.getDrops().add(tippedArrow);
-            }
-          }
-        }
+        long seed = world.getSeed();
+        int ticks = Helpers.randomIntMinMax(seed, 100, 900);
+        Random random = new Random(seed);
+        int amplifier = random.nextInt(5);
+        ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.POISON, PotionType.POISON, ticks, amplifier);
+        event.getDrops().add(tippedArrow);
       }
       if(entity instanceof Stray) {
         if(rng < 0.1) {
