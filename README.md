@@ -36,6 +36,20 @@ spawns, there is a 10% chance to spawn a
 [Illusioner](https://minecraft.fandom.com/wiki/Illusioner)
 instead.
 
+### Skeleton
+
+Skeletons (except stray) have a 15% change to spawn with one
+[tipped arrow](https://minecraft.fandom.com/wiki/Arrow#Tipped_arrows)
+among 4:
+
+- Arrow of Decay (which applies wither effect);
+- Arrow of Harming;
+- Arrow of Poison;
+- Arrow of Weakness
+
+If a skeleton spawn with any of those arrows,
+he will drop it when killed.
+
 ### Stray
 
 [Stray](https://minecraft.fandom.com/wiki/Stray)
