@@ -12,8 +12,8 @@ import java.util.Random;
 
 public class Helpers {
 
-  public static int randomIntMinMax(long seed, int min, int max) {
-    Random r = new Random(seed);
+  public static int randomIntMinMax(int min, int max) {
+    Random r = new Random();
     return r.nextInt(max) + min;
   }
 

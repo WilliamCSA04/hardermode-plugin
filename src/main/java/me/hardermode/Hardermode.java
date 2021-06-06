@@ -22,13 +22,11 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.loot.LootTable;
 import org.bukkit.loot.LootTables;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
@@ -101,60 +99,59 @@ public final class Hardermode extends JavaPlugin implements Listener {
 
   @EventHandler
   public void onLootGenerationAddEnderEye(LootGenerateEvent event) {
-    long seed = world.getSeed();
     ItemStack enderEye = new ItemStack(Material.ENDER_EYE, 0);
     double changeToBePresent = 0;
     LootTable lootTable = event.getLootTable();
     if(Loot.isSameLootTableOn(lootTable, LootTables.ABANDONED_MINESHAFT)) {
-      enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 3));
+      enderEye.setAmount(Helpers.randomIntMinMax(1, 3));
       changeToBePresent = 0.01;
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.BASTION_TREASURE)) {
       changeToBePresent = 0.4;
-      enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 4));
+      enderEye.setAmount(Helpers.randomIntMinMax(1, 4));
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.BASTION_BRIDGE)) {
       changeToBePresent = 0.05;
-      enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 2));
+      enderEye.setAmount(Helpers.randomIntMinMax(1, 2));
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.BASTION_HOGLIN_STABLE)) {
-      enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 2));
+      enderEye.setAmount(Helpers.randomIntMinMax(1, 2));
       changeToBePresent = 0.05;
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.BURIED_TREASURE)) {
-      enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 2));
+      enderEye.setAmount(Helpers.randomIntMinMax(1, 2));
       changeToBePresent = 0.02;
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.END_CITY_TREASURE)) {
-      enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 5));
+      enderEye.setAmount(Helpers.randomIntMinMax(1, 5));
       changeToBePresent = 0.1;
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.DESERT_PYRAMID)) {
-      enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 2));
+      enderEye.setAmount(Helpers.randomIntMinMax(1, 2));
       changeToBePresent = 0.01;
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.IGLOO_CHEST)) {
       enderEye.setAmount(1);
       changeToBePresent = 0.05;
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.JUNGLE_TEMPLE)) {
-      enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 3));
+      enderEye.setAmount(Helpers.randomIntMinMax(1, 3));
       changeToBePresent = 0.04;
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.NETHER_BRIDGE)) {
-      enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 5));
+      enderEye.setAmount(Helpers.randomIntMinMax(1, 5));
       changeToBePresent = 0.3;
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.PILLAGER_OUTPOST)) {
-      enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 2));
+      enderEye.setAmount(Helpers.randomIntMinMax(1, 2));
       changeToBePresent = 0.05;
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.RUINED_PORTAL)) {
-      enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 3));
+      enderEye.setAmount(Helpers.randomIntMinMax(1, 3));
       changeToBePresent = 0.01;
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.SHIPWRECK_SUPPLY)) {
-      enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 3));
+      enderEye.setAmount(Helpers.randomIntMinMax(1, 3));
       changeToBePresent = 0.03;
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.SHIPWRECK_TREASURE)) {
-      enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 2));
+      enderEye.setAmount(Helpers.randomIntMinMax(1, 2));
       changeToBePresent = 0.07;
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.SIMPLE_DUNGEON)) {
       enderEye.setAmount(1);
       changeToBePresent = 0.01;
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.UNDERWATER_RUIN_BIG)) {
-      enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 2));
+      enderEye.setAmount(Helpers.randomIntMinMax(1, 2));
       changeToBePresent = 0.08;
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.WOODLAND_MANSION)) {
-      enderEye.setAmount(Helpers.randomIntMinMax(seed, 1, 5));
+      enderEye.setAmount(Helpers.randomIntMinMax(1, 5));
       changeToBePresent = 0.15;
     }
     Loot.addItemStackIntoChest(enderEye, event.getLoot(), changeToBePresent);
@@ -223,9 +220,8 @@ public final class Hardermode extends JavaPlugin implements Listener {
       if(metadataList.size() > 0) {
         String skeletonSpecialArrow = metadataList.get(0).asString();
         System.out.println("HARDERMODE = " + skeletonSpecialArrow);
-        long seed = world.getSeed();
-        int ticks = Helpers.randomIntMinMax(seed, 100, 900);
-        Random random = new Random(seed);
+        int ticks = Helpers.randomIntMinMax(100, 900);
+        Random random = new Random();
         int amplifier = random.nextInt(5);
         if(TippedArrow.Variant.POISON.toString().equals(skeletonSpecialArrow)) {
           ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.POISON, PotionType.POISON, ticks, amplifier);
