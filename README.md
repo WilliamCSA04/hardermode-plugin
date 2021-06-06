@@ -19,6 +19,9 @@ Some gameplay aspects changed:
 
 - Players can take damage 50% faster after take 
   damage.
+- Any arrow with potion effect that hits a living
+  entity that is already on that same effect will
+  have that effect amplified, capped at level V.
 
 ## Mobs
 
@@ -58,14 +61,7 @@ he will drop it when killed.
 
 ### Stray
 
-[Stray](https://minecraft.fandom.com/wiki/Stray)
-received a buff, whenever it hits a player
-with an arrow, and the player is already with [slowness](https://minecraft.fandom.com/wiki/Slowness)
-the duration of the effect will be reset, and the
-slow effect will be increased by 1, capped at
-slowness IV.
-
-Stray also has a 10% chance to drop a [ice](https://minecraft.fandom.com/wiki/Ice).
+Stray a 10% chance to drop a [ice](https://minecraft.fandom.com/wiki/Ice).
 
 ### Husk
 
