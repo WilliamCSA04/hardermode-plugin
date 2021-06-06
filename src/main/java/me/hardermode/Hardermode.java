@@ -75,25 +75,19 @@ public final class Hardermode extends JavaPlugin implements Listener {
   }
 
   @EventHandler
-  public void onStrayHittingPlayer(EntityDamageByEntityEvent event) {
+  public void onArrowHittingPlayer(EntityDamageByEntityEvent event) {
     boolean isArrow = event.getDamager() instanceof Arrow;
     if(isArrow) {
       Arrow arrow = (Arrow) event.getDamager();
-      boolean isStray = arrow.getShooter() instanceof Stray;
-      if(isStray) {
-        LivingEntity entity = Helpers.castLivingEntity(event.getEntity());
-        Collection<PotionEffect> effects = entity.getActivePotionEffects();
-        for(PotionEffect effect : effects) {
-          boolean hasSlow = effect.getType().getName() == PotionEffectType.SLOW.getName();
-          if(hasSlow){
-            int amplifier = effect.getAmplifier();
-            int SLOW_MAX_LEVEL = 3;
-            if(amplifier < SLOW_MAX_LEVEL) {
-              int amplified = effect.getAmplifier() + 1;
-              PotionEffect amplifiedEffect = new PotionEffect(PotionEffectType.SLOW, 600, amplified);
-              amplifiedEffect.apply(entity);
-            }
-          }
+      LivingEntity entity = Helpers.castLivingEntity(event.getEntity());
+      Collection<PotionEffect> effects = entity.getActivePotionEffects();
+      for(PotionEffect effect : effects) {
+        int amplifier = effect.getAmplifier();
+        int SLOW_MAX_LEVEL = 4;
+        if(amplifier < SLOW_MAX_LEVEL) {
+          int amplified = effect.getAmplifier() + 1;
+          PotionEffect amplifiedEffect = new PotionEffect(effect.getType(), effect.getDuration(), amplified);
+          amplifiedEffect.apply(entity);
         }
       }
     }
@@ -224,27 +218,26 @@ public final class Hardermode extends JavaPlugin implements Listener {
       List<MetadataValue> metadataList = entity.getMetadata("SpecialArrow");
       if(metadataList.size() > 0) {
         String skeletonSpecialArrow = metadataList.get(0).asString();
-        int ticks = Helpers.randomIntMinMax(100, 900);
         Random random = new Random();
         int amplifier = random.nextInt(5);
         int quantity = random.nextInt(5) + 1;
         if(TippedArrow.Variant.POISON.toString().equals(skeletonSpecialArrow)) {
-          ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.POISON, PotionType.POISON, ticks, amplifier);
+          ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.POISON, PotionType.POISON, Helpers.randomIntMinMax(100, 900), amplifier);
           tippedArrow.setAmount(quantity);
           event.getDrops().add(tippedArrow);
         } else if(TippedArrow.Variant.DECAY.toString().equals(skeletonSpecialArrow)) {
-          ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.WITHER, PotionType.UNCRAFTABLE, ticks, amplifier);
+          ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.WITHER, PotionType.UNCRAFTABLE, Helpers.randomIntMinMax(100, 600), amplifier);
           ItemMeta tippedArrowItemMeta = tippedArrow.getItemMeta();
           tippedArrowItemMeta.setDisplayName("Withering arrow");
           tippedArrow.setAmount(quantity);
           tippedArrow.setItemMeta(tippedArrowItemMeta);
           event.getDrops().add(tippedArrow);
         } else if(TippedArrow.Variant.HARMING.toString().equals(skeletonSpecialArrow)) {
-          ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.HARM, PotionType.INSTANT_DAMAGE, ticks, amplifier);
+          ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.HARM, PotionType.INSTANT_DAMAGE, Helpers.randomIntMinMax(20, 100), amplifier);
           tippedArrow.setAmount(quantity);
           event.getDrops().add(tippedArrow);
         } else if(TippedArrow.Variant.WEAKNESS.toString().equals(skeletonSpecialArrow)) {
-          ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.WEAKNESS, PotionType.WEAKNESS, ticks, amplifier);
+          ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.WEAKNESS, PotionType.WEAKNESS, Helpers.randomIntMinMax(100, 900), amplifier);
           tippedArrow.setAmount(quantity);
           event.getDrops().add(tippedArrow);
         }
@@ -268,16 +261,19 @@ public final class Hardermode extends JavaPlugin implements Listener {
           Arrow project = Helpers.cast(event.getProjectile(), Arrow.class);
           if(project != null) {
             String skeletonSpecialArrow = metadataList.get(0).asString();
-            int DEFAULT_TICK_DURATION = 600;
             int DEFAULT_AMPLIFIER = 0;
             if(TippedArrow.Variant.POISON.toString().equals(skeletonSpecialArrow)) {
-              project.addCustomEffect(new PotionEffect(PotionEffectType.POISON, DEFAULT_TICK_DURATION, DEFAULT_AMPLIFIER), true);
+              int tickDuration = Helpers.randomIntMinMax(100, 600);
+              project.addCustomEffect(new PotionEffect(PotionEffectType.POISON, tickDuration, DEFAULT_AMPLIFIER), false);
             } else if(TippedArrow.Variant.HARMING.toString().equals(skeletonSpecialArrow)) {
-              project.addCustomEffect(new PotionEffect(PotionEffectType.HARM, DEFAULT_TICK_DURATION, DEFAULT_AMPLIFIER), true);
+              int tickDuration = Helpers.randomIntMinMax(20, 100);
+              project.addCustomEffect(new PotionEffect(PotionEffectType.HARM, tickDuration, DEFAULT_AMPLIFIER), false);
             } else if(TippedArrow.Variant.DECAY.toString().equals(skeletonSpecialArrow)) {
-              project.addCustomEffect(new PotionEffect(PotionEffectType.WITHER, DEFAULT_TICK_DURATION, DEFAULT_AMPLIFIER), true);
+              int tickDuration = Helpers.randomIntMinMax(100, 600);
+              project.addCustomEffect(new PotionEffect(PotionEffectType.WITHER, tickDuration, DEFAULT_AMPLIFIER), false);
             } else if(TippedArrow.Variant.WEAKNESS.toString().equals(skeletonSpecialArrow)) {
-              project.addCustomEffect(new PotionEffect(PotionEffectType.WEAKNESS, DEFAULT_TICK_DURATION, DEFAULT_AMPLIFIER), true);
+              int tickDuration = Helpers.randomIntMinMax(200, 900);
+              project.addCustomEffect(new PotionEffect(PotionEffectType.WEAKNESS, tickDuration, DEFAULT_AMPLIFIER), false);
             }
           }
         }
