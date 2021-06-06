@@ -23,8 +23,7 @@ Some gameplay aspects changed:
 ## Mobs
 
 Every mob categorized as [monster](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/Monster.html)
-will spawn with more health and more base
-damage:
+will spawn with different status from Vanilla:
 
 - 30% maximum health increased;
 - 25% base damage increased;
