@@ -194,6 +194,26 @@ public final class Hardermode extends JavaPlugin implements Listener {
   }
 
   @EventHandler
+  public void onElderGuardianSpawn(CreatureSpawnEvent event) {
+    ElderGuardian elderGuardian = Helpers.cast(event.getEntity(), ElderGuardian.class);
+    if(elderGuardian != null) {
+      AttributeInstance maxHealth = elderGuardian.getAttribute(Attribute.GENERIC_MAX_HEALTH);
+      AttributeInstance attackDamage = elderGuardian.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
+      AttributeInstance armor = elderGuardian.getAttribute(Attribute.GENERIC_ARMOR);
+      if(maxHealth != null) {
+        double buff = Buff.buffAttribute(maxHealth, 0.2);
+        elderGuardian.setHealth(buff);
+      }
+      if(attackDamage != null) {
+        Buff.buffAttribute(attackDamage, 0.1);
+      }
+      if(armor != null) {
+        Buff.buffAttribute(armor, 0.5);
+      }
+    }
+  }
+
+  @EventHandler
   public void onIllagerSpawnReplaceByIllusioner(CreatureSpawnEvent event) {
     Entity entity = event.getEntity();
     if(entity instanceof Illager && !(entity instanceof Spellcaster)) {
