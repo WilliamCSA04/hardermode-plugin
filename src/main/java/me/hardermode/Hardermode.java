@@ -193,6 +193,9 @@ public final class Hardermode extends JavaPlugin implements Listener {
       if(attackDamage != null) {
         Buff.buffAttribute(attackDamage, 0.25);
       }
+
+      int arrowCD = monster.getArrowCooldown() / 2;
+      monster.setArrowCooldown(arrowCD);
     }
   }
 
@@ -221,7 +224,6 @@ public final class Hardermode extends JavaPlugin implements Listener {
       List<MetadataValue> metadataList = entity.getMetadata("SpecialArrow");
       if(metadataList.size() > 0) {
         String skeletonSpecialArrow = metadataList.get(0).asString();
-        System.out.println("HARDERMODE = " + skeletonSpecialArrow);
         int ticks = Helpers.randomIntMinMax(100, 900);
         Random random = new Random();
         int amplifier = random.nextInt(5);
