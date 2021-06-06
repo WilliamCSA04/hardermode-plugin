@@ -83,8 +83,8 @@ public final class Hardermode extends JavaPlugin implements Listener {
       Collection<PotionEffect> effects = entity.getActivePotionEffects();
       for(PotionEffect effect : effects) {
         int amplifier = effect.getAmplifier();
-        int SLOW_MAX_LEVEL = 4;
-        if(amplifier < SLOW_MAX_LEVEL) {
+        int MAX_LEVEL = 4;
+        if(amplifier < MAX_LEVEL) {
           int amplified = effect.getAmplifier() + 1;
           PotionEffect amplifiedEffect = new PotionEffect(effect.getType(), effect.getDuration(), amplified);
           amplifiedEffect.apply(entity);
