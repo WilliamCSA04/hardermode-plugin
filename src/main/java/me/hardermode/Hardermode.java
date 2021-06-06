@@ -229,6 +229,12 @@ public final class Hardermode extends JavaPlugin implements Listener {
   public void onDeathChangeDrops(EntityDeathEvent event) {
     Entity entity = event.getEntity();
     double rng = Math.random();
+    if(entity instanceof ElderGuardian) {
+      if(rng < 0.5) {
+        ItemStack enchantedGoldenApple = new ItemStack(Material.ENCHANTED_GOLDEN_APPLE);
+        event.getDrops().add(enchantedGoldenApple);
+      }
+    }
     if(entity instanceof Husk) {
       if(rng < 0.1) {
         ItemStack sand = new ItemStack(Material.SAND);
