@@ -28,6 +28,7 @@ damage:
 
 - 30% maximum health increased;
 - 25% base damage increased;
+- 50% arrow cooldown reduction;
 
 ### Creeper
 
