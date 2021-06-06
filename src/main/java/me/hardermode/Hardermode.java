@@ -17,6 +17,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.world.LootGenerateEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -251,6 +252,34 @@ public final class Hardermode extends JavaPlugin implements Listener {
           event.getDrops().add(ice);
         }
       }
+    }
+  }
+
+  @EventHandler
+  public void onSkeletonShootingArrow(EntityShootBowEvent event) {
+    Skeleton skeleton = Helpers.cast(event.getEntity(), Skeleton.class);
+    if(skeleton != null) {
+      List<MetadataValue> metadataList = skeleton.getMetadata("SpecialArrow");
+      if(metadataList.size() > 0) {
+        if(!(skeleton instanceof Stray || skeleton instanceof WitherSkeleton)) {
+          Arrow project = Helpers.cast(event.getProjectile(), Arrow.class);
+          if(project != null) {
+            String skeletonSpecialArrow = metadataList.get(0).asString();
+            int DEFAULT_TICK_DURATION = 600;
+            int DEFAULT_AMPLIFIER = 0;
+            if(TippedArrow.Variant.POISON.toString().equals(skeletonSpecialArrow)) {
+              project.addCustomEffect(new PotionEffect(PotionEffectType.POISON, DEFAULT_TICK_DURATION, DEFAULT_AMPLIFIER), true);
+            } else if(TippedArrow.Variant.HARMING.toString().equals(skeletonSpecialArrow)) {
+              project.addCustomEffect(new PotionEffect(PotionEffectType.HARM, DEFAULT_TICK_DURATION, DEFAULT_AMPLIFIER), true);
+            } else if(TippedArrow.Variant.DECAY.toString().equals(skeletonSpecialArrow)) {
+              project.addCustomEffect(new PotionEffect(PotionEffectType.WITHER, DEFAULT_TICK_DURATION, DEFAULT_AMPLIFIER), true);
+            } else if(TippedArrow.Variant.WEAKNESS.toString().equals(skeletonSpecialArrow)) {
+              project.addCustomEffect(new PotionEffect(PotionEffectType.WEAKNESS, DEFAULT_TICK_DURATION, DEFAULT_AMPLIFIER), true);
+            }
+          }
+        }
+      }
+
     }
   }
 
