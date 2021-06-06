@@ -13,10 +13,16 @@ search for better armors and weapons. My main
 goal is actually create the *midgame* aspect
 that minecraft, in my opinion, lacks.
 
+## Gameplay
+
+Some gameplay aspects changed:
+
+- Players can take damage 50% faster after take 
+  damage.
+
 ## Mobs
 
-First, lets start with the main enemies
-of the game. Every mob categorized as [monster](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/Monster.html)
+Every mob categorized as [monster](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/Monster.html)
 will spawn with more health and more base
 damage:
 
