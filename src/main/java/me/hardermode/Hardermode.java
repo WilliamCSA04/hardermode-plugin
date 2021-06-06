@@ -18,6 +18,7 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.world.LootGenerateEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
@@ -281,6 +282,13 @@ public final class Hardermode extends JavaPlugin implements Listener {
       }
 
     }
+  }
+
+  @EventHandler
+  public void onPlayerJoin(PlayerJoinEvent event) {
+    Player player = event.getPlayer();
+    int noDamageTicks = player.getNoDamageTicks() / 2;
+    player.setNoDamageTicks(noDamageTicks);
   }
 
   @Override
