@@ -223,20 +223,25 @@ public final class Hardermode extends JavaPlugin implements Listener {
         int ticks = Helpers.randomIntMinMax(100, 900);
         Random random = new Random();
         int amplifier = random.nextInt(5);
+        int quantity = random.nextInt(5) + 1;
         if(TippedArrow.Variant.POISON.toString().equals(skeletonSpecialArrow)) {
           ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.POISON, PotionType.POISON, ticks, amplifier);
+          tippedArrow.setAmount(quantity);
           event.getDrops().add(tippedArrow);
         } else if(TippedArrow.Variant.DECAY.toString().equals(skeletonSpecialArrow)) {
           ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.WITHER, PotionType.UNCRAFTABLE, ticks, amplifier);
           ItemMeta tippedArrowItemMeta = tippedArrow.getItemMeta();
           tippedArrowItemMeta.setDisplayName("Withering arrow");
+          tippedArrow.setAmount(quantity);
           tippedArrow.setItemMeta(tippedArrowItemMeta);
           event.getDrops().add(tippedArrow);
         } else if(TippedArrow.Variant.HARMING.toString().equals(skeletonSpecialArrow)) {
           ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.HARM, PotionType.INSTANT_DAMAGE, ticks, amplifier);
+          tippedArrow.setAmount(quantity);
           event.getDrops().add(tippedArrow);
         } else if(TippedArrow.Variant.WEAKNESS.toString().equals(skeletonSpecialArrow)) {
           ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.WEAKNESS, PotionType.WEAKNESS, ticks, amplifier);
+          tippedArrow.setAmount(quantity);
           event.getDrops().add(tippedArrow);
         }
       }
