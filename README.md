@@ -47,7 +47,8 @@ instead.
 
 ### Skeleton
 
-Skeletons (except stray) have a 15% change to spawn with one
+[Skeletons](https://minecraft.fandom.com/wiki/Skeleton)
+(except stray and wither skeletons) have a 15% change to spawn with some
 [tipped arrow](https://minecraft.fandom.com/wiki/Arrow#Tipped_arrows)
 among 4:
 
@@ -67,6 +68,16 @@ Stray a 10% chance to drop a [ice](https://minecraft.fandom.com/wiki/Ice).
 
 Husk has a 10% chance to drop a sand block.
 
+### Elder Guardian
+
+To make more interesting to players, Elder Guardian
+now have a 50% chance to drop an Enchanted Golden
+Apple. It also got buffed:
+
+- 20% more total health;
+- 10% more base damage;
+- 50% more base armor;
+  
 ## Loot generation
 
 Changes were made on loot generation.
