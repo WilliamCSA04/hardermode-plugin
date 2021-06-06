@@ -2,7 +2,7 @@
 
 Hardermode is my first Minecraft plugin.
 The motivation behind it is to make the game
-not only harder, but without making it unfair.
+harder, but without making it unfair.
 My point here is not have mobs killing you in a
 single hit and spawning them on two blocks away
 from you.
