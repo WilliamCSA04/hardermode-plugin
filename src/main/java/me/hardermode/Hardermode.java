@@ -215,7 +215,8 @@ public final class Hardermode extends JavaPlugin implements Listener {
 
   @EventHandler
   public void onBattleWithElderGuardian(EntityDamageByEntityEvent event){
-    if(event.getEntity() instanceof ElderGuardian) {
+    ElderGuardian elderGuardian = Helpers.cast(event.getEntity(), ElderGuardian.class);
+    if(elderGuardian != null) {
       Entity entity = event.getDamager();
       LivingEntity livingEntity = Helpers.cast(entity, LivingEntity.class);
       if(livingEntity != null) {
@@ -231,6 +232,14 @@ public final class Hardermode extends JavaPlugin implements Listener {
           }
         }
       }
+    }
+  }
+
+  @EventHandler
+  public void onElderGuardianDeath(EntityDeathEvent event) {
+    ElderGuardian elderGuardian = Helpers.cast(event.getEntity(), ElderGuardian.class);
+    if(elderGuardian != null) {
+      elderGuardian.getWorld().createExplosion(elderGuardian.getLocation(), 4F);
     }
   }
 
