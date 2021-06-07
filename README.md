@@ -37,6 +37,13 @@ will spawn with different status from Vanilla:
 - 25% base damage increased;
 - 50% arrow cooldown reduction;
 
+Also, any monster that spawns with a sword, axe, bow or
+crossbow, have a 15% to have an enchantment on it:
+
+- Swords and axes may gain sharpness from I to V;
+- Bows may gain power from I to V;
+- Crossbows may gain piercing up to IV;
+
 ### Creeper
 
 [Creeper](https://minecraft.fandom.com/wiki/Creeper)
