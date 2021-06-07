@@ -33,12 +33,12 @@ Some gameplay aspects changed:
 Every mob categorized as [monster](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/Monster.html)
 will spawn with different status from Vanilla:
 
-- 30% maximum health increased;
-- 25% base damage increased;
+- 50% maximum health increased;
+- 80% base damage increased;
 - 50% arrow cooldown reduction;
 
 Also, any monster that spawns with a sword, axe, bow or
-crossbow, have a 15% to have an enchantment on it:
+crossbow, have a 25% to have an enchantment on it:
 
 - Swords and axes may gain sharpness from I to V;
 - Bows may gain power from I to V;
@@ -93,9 +93,9 @@ now have always to drop a [trident](https://minecraft.fandom.com/wiki/Trident)
 and have 30% chance to drop an [Conduit](https://minecraft.fandom.com/wiki/Conduit).
 It also got buffed:
 
-- 20% more total health;
-- 10% more base damage;
-- 50% more base armor;
+- 40% more total health;
+- 20% more base damage;
+- 70% more base armor;
 
 #### Battle
 

@@ -185,16 +185,16 @@ public final class Hardermode extends JavaPlugin implements Listener {
       AttributeInstance maxHealthAttribute = monster.getAttribute(Attribute.GENERIC_MAX_HEALTH);
       AttributeInstance attackDamage = monster.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
       if(maxHealthAttribute != null) {
-        double buff = Buff.buffAttribute(maxHealthAttribute, 0.3);
+        double buff = Buff.buffAttribute(maxHealthAttribute, 0.5);
         monster.setHealth(buff);
       }
       if(attackDamage != null) {
-        Buff.buffAttribute(attackDamage, 0.25);
+        Buff.buffAttribute(attackDamage, 80);
       }
       int arrowCD = monster.getArrowCooldown() / 2;
       monster.setArrowCooldown(arrowCD);
 
-      boolean shouldAddEnchantment = Math.random() < 0.15;
+      boolean shouldAddEnchantment = Math.random() < 0.25;
       if(shouldAddEnchantment) {
         EntityEquipment equipment = monster.getEquipment();
         if(equipment != null) {
@@ -229,14 +229,14 @@ public final class Hardermode extends JavaPlugin implements Listener {
       AttributeInstance attackDamage = elderGuardian.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
       AttributeInstance armor = elderGuardian.getAttribute(Attribute.GENERIC_ARMOR);
       if(maxHealth != null) {
-        double buff = Buff.buffAttribute(maxHealth, 0.2);
+        double buff = Buff.buffAttribute(maxHealth, 0.4);
         elderGuardian.setHealth(buff);
       }
       if(attackDamage != null) {
-        Buff.buffAttribute(attackDamage, 0.1);
+        Buff.buffAttribute(attackDamage, 0.2);
       }
       if(armor != null) {
-        Buff.buffAttribute(armor, 0.5);
+        Buff.buffAttribute(armor, 0.7);
       }
     }
   }
