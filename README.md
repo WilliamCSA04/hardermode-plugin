@@ -1,5 +1,10 @@
 # Hardermode
 
+---
+
+:warning: Under development
+
+---
 Hardermode is my first Minecraft plugin.
 The motivation behind it is to make the game
 harder, but without making it unfair.
