@@ -6,10 +6,13 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.Server;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.KnowledgeBookMeta;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class Configuration {
 
@@ -41,8 +44,10 @@ public class Configuration {
     KnowledgeBookMeta recipeBook = (KnowledgeBookMeta) book.getItemMeta();
     Recipe enchantedGoldenApple = goldenAppleRecipe();
     Recipe conduit = conduitRecipe();
+    Recipe chest = chestRecipe();
     addRecipe(enchantedGoldenApple, Material.ENCHANTED_GOLDEN_APPLE, recipeBook);
     addRecipe(conduit, Material.CONDUIT, recipeBook);
+    addRecipe(chest, Material.CHEST, recipeBook);
   }
 
   private void addRecipe(Recipe recipe, Material material, KnowledgeBookMeta recipeBook) {
@@ -79,6 +84,27 @@ public class Configuration {
     return recipe;
   }
 
+  private ShapedRecipe chestRecipe() {
+    Material material = Material.CHEST;
+    NamespacedKey conduitKey = material.getKey();
+    ItemStack chest = new ItemStack(material);
+    ShapedRecipe recipe = new ShapedRecipe(conduitKey, chest);
+    recipe.shape("WWW", "WIW", "WWW");
+    List<Material> materials = new ArrayList<>();
+    materials.add(Material.ACACIA_PLANKS);
+    materials.add(Material.BIRCH_PLANKS);
+    materials.add(Material.OAK_PLANKS);
+    materials.add(Material.SPRUCE_PLANKS);
+    materials.add(Material.DARK_OAK_PLANKS);
+    materials.add(Material.JUNGLE_PLANKS);
+    materials.add(Material.WARPED_PLANKS);
+    materials.add(Material.CRIMSON_PLANKS);
+    RecipeChoice planks = new RecipeChoice.MaterialChoice(materials);
+    recipe.setIngredient('W', planks)
+            .setIngredient('I', Material.IRON_INGOT);
+    return recipe;
+  }
+
   private void removeRecipes() {
     Iterator<Recipe> recipes = server.recipeIterator();
     while(recipes.hasNext()) {
@@ -87,6 +113,9 @@ public class Configuration {
         System.out.println("[hardermode] - Removing recipe: " + material.getKey());
         recipes.remove();
       } else if (material == Material.CONDUIT) {
+        System.out.println("[hardermode] - Removing recipe: " + material.getKey());
+        recipes.remove();
+      } else if (material == Material.CHEST) {
         System.out.println("[hardermode] - Removing recipe: " + material.getKey());
         recipes.remove();
       }
