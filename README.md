@@ -93,6 +93,12 @@ a projectile, its shooter will receive the blindness effect.
 
 On death, it will explode with the same power of a [TNT](https://minecraft.fandom.com/wiki/TNT).
   
+### Piglin Brute
+
+Now, [Piglin Brute](https://minecraft.fandom.com/wiki/Piglin_Brute)
+have a 5% chance to replace a normal piglin spawn. Which
+means that he can spawn anywhere on the Nether.
+
 ## Loot generation
 
 Changes were made on loot generation.
