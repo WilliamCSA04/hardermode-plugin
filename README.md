@@ -154,3 +154,5 @@ only be found by looting chests.
 - Conduit craft has changed;
   
   ![Conduit craft](./assets/Conduit.png)
+
+- Chests now require an iron ingot be crafted.
