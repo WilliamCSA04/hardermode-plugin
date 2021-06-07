@@ -250,16 +250,19 @@ public final class Hardermode extends JavaPlugin implements Listener {
   public void onDeathChangeDrops(EntityDeathEvent event) {
     Entity entity = event.getEntity();
     double rng = Math.random();
+    List<ItemStack> drops = event.getDrops();
     if(entity instanceof ElderGuardian) {
-      if(rng < 0.5) {
+      ItemStack trident = new ItemStack(Material.TRIDENT);
+      drops.add(trident);
+      if(rng < 0.05) {
         ItemStack enchantedGoldenApple = new ItemStack(Material.ENCHANTED_GOLDEN_APPLE);
-        event.getDrops().add(enchantedGoldenApple);
+        drops.add(enchantedGoldenApple);
       }
     }
     if(entity instanceof Husk) {
       if(rng < 0.1) {
         ItemStack sand = new ItemStack(Material.SAND);
-        event.getDrops().add(sand);
+        drops.add(sand);
       }
     } else if(entity instanceof Skeleton) {
       List<MetadataValue> metadataList = entity.getMetadata("SpecialArrow");
@@ -271,28 +274,28 @@ public final class Hardermode extends JavaPlugin implements Listener {
         if(TippedArrow.Variant.POISON.toString().equals(skeletonSpecialArrow)) {
           ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.POISON, PotionType.POISON, Helpers.randomIntMinMax(100, 900), amplifier);
           tippedArrow.setAmount(quantity);
-          event.getDrops().add(tippedArrow);
+          drops.add(tippedArrow);
         } else if(TippedArrow.Variant.DECAY.toString().equals(skeletonSpecialArrow)) {
           ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.WITHER, PotionType.UNCRAFTABLE, Helpers.randomIntMinMax(100, 600), amplifier);
           ItemMeta tippedArrowItemMeta = tippedArrow.getItemMeta();
           tippedArrowItemMeta.setDisplayName("Withering arrow");
           tippedArrow.setAmount(quantity);
           tippedArrow.setItemMeta(tippedArrowItemMeta);
-          event.getDrops().add(tippedArrow);
+          drops.add(tippedArrow);
         } else if(TippedArrow.Variant.HARMING.toString().equals(skeletonSpecialArrow)) {
           ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.HARM, PotionType.INSTANT_DAMAGE, Helpers.randomIntMinMax(20, 100), amplifier);
           tippedArrow.setAmount(quantity);
-          event.getDrops().add(tippedArrow);
+          drops.add(tippedArrow);
         } else if(TippedArrow.Variant.WEAKNESS.toString().equals(skeletonSpecialArrow)) {
           ItemStack tippedArrow = TippedArrow.tippedArrowBuilder(PotionEffectType.WEAKNESS, PotionType.WEAKNESS, Helpers.randomIntMinMax(100, 900), amplifier);
           tippedArrow.setAmount(quantity);
-          event.getDrops().add(tippedArrow);
+          drops.add(tippedArrow);
         }
       }
       if(entity instanceof Stray) {
         if(rng < 0.1) {
           ItemStack ice = new ItemStack(Material.ICE);
-          event.getDrops().add(ice);
+          drops.add(ice);
         }
       }
     }
