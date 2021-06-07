@@ -25,7 +25,7 @@ Some gameplay aspects changed:
 - Players can take damage 50% faster after take 
   damage.
 - Any arrow with potion effect that hits a living
-  entity that is already on that same effect will
+  entity that already has that same effect will
   have that effect amplified, capped at level V.
 
 ## Mobs
