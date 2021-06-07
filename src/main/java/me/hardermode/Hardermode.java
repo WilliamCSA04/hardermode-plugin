@@ -263,9 +263,9 @@ public final class Hardermode extends JavaPlugin implements Listener {
     if(entity instanceof ElderGuardian) {
       ItemStack trident = new ItemStack(Material.TRIDENT);
       drops.add(trident);
-      if(rng < 0.05) {
-        ItemStack enchantedGoldenApple = new ItemStack(Material.ENCHANTED_GOLDEN_APPLE);
-        drops.add(enchantedGoldenApple);
+      if(rng < 0.3) {
+        ItemStack conduit = new ItemStack(Material.CONDUIT);
+        drops.add(conduit);
       }
     }
     if(entity instanceof Husk) {
