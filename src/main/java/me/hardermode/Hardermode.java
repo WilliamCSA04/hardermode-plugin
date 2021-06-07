@@ -256,6 +256,18 @@ public final class Hardermode extends JavaPlugin implements Listener {
   }
 
   @EventHandler
+  public void onPiglinSpawnReplaceByBrute(CreatureSpawnEvent event) {
+    Entity entity = event.getEntity();
+    if(entity instanceof Piglin) {
+      boolean shouldSpawnIllusionerInstead = Math.random() < 0.05;
+      if(shouldSpawnIllusionerInstead) {
+        event.setCancelled(true);
+        entity.getWorld().spawnEntity(event.getLocation(), EntityType.PIGLIN_BRUTE);
+      }
+    }
+  }
+
+  @EventHandler
   public void onDeathChangeDrops(EntityDeathEvent event) {
     Entity entity = event.getEntity();
     double rng = Math.random();
