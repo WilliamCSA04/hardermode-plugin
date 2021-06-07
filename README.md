@@ -71,12 +71,22 @@ Husk has a 10% chance to drop a sand block.
 ### Elder Guardian
 
 To make more interesting to players, Elder Guardian
-now have a 50% chance to drop an Enchanted Golden
-Apple. It also got buffed:
+now have always to drop a [trident](https://minecraft.fandom.com/wiki/Trident)
+and have 30% chance to drop an [Conduit](https://minecraft.fandom.com/wiki/Conduit).
+It also got buffed:
 
 - 20% more total health;
 - 10% more base damage;
 - 50% more base armor;
+
+#### Battle
+
+While fighting a Elder guardian, you will need to take
+extra care. Hitting it with a melee attack will cause
+the damager to be poisoned, if the damage is caused by
+a projectile, its shooter will receive the blindness effect.
+
+On death, it will explode with the same power of a [TNT](https://minecraft.fandom.com/wiki/TNT).
   
 ## Loot generation
 
