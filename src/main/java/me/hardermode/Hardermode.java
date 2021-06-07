@@ -272,6 +272,20 @@ public final class Hardermode extends JavaPlugin implements Listener {
   }
 
   @EventHandler
+  public void onIllagerTakingLethalDamage(EntityDamageByEntityEvent event) {
+    Illager illager = Helpers.cast(event.getEntity(), Illager.class);
+    if(illager != null) {
+
+      if(illager.getHealth() - event.getDamage() < 1) {
+        boolean preventDeath = Math.random() < 0.25;
+        if(preventDeath) {
+          illager.getEquipment().setItemInOffHand(new ItemStack(Material.TOTEM_OF_UNDYING));
+        }
+      }
+    }
+  }
+
+  @EventHandler
   public void onIllagerSpawnReplaceByIllusioner(CreatureSpawnEvent event) {
     Entity entity = event.getEntity();
     if(entity instanceof Illager && !(entity instanceof Spellcaster)) {
