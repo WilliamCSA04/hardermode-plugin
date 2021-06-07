@@ -128,7 +128,7 @@ public final class Hardermode extends JavaPlugin implements Listener {
       changeToBePresent = 0.05;
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.JUNGLE_TEMPLE)) {
       enderEye.setAmount(Helpers.randomIntMinMax(1, 3));
-      changeToBePresent = 0.04;
+      changeToBePresent = 0.1;
     } else if(Loot.isSameLootTableOn(lootTable, LootTables.NETHER_BRIDGE)) {
       enderEye.setAmount(Helpers.randomIntMinMax(1, 5));
       changeToBePresent = 0.3;

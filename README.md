@@ -131,7 +131,7 @@ on any dimension.
     | End city Treasure | 10% | 1-5 |
     | Desert Pyramid | 1% | 1-2 |
     | Igloo | 5% | 1 |
-    | Jungle Temple | 4% | 1-3 |
+    | Jungle Temple | 10% | 1-3 |
     | Nether Fortress | 30% | 1-5 |
     | Pillager Outpost | 5% | 1-2 |
     | Ruined Portal | 1% | 1-3 |
