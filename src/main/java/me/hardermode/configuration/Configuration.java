@@ -37,15 +37,21 @@ public class Configuration {
   }
 
   private void addRecipes() {
-    Recipe enchantedGoldenApple = goldenAppleRecipe();
     ItemStack book = new ItemStack(Material.KNOWLEDGE_BOOK, 1);
     KnowledgeBookMeta recipeBook = (KnowledgeBookMeta) book.getItemMeta();
-    if(Bukkit.addRecipe(enchantedGoldenApple)) {
-      NamespacedKey enchantedGoldenAppleKey = Material.ENCHANTED_GOLDEN_APPLE.getKey();
+    Recipe enchantedGoldenApple = goldenAppleRecipe();
+    Recipe conduit = conduitRecipe();
+    addRecipe(enchantedGoldenApple, Material.ENCHANTED_GOLDEN_APPLE, recipeBook);
+    addRecipe(conduit, Material.CONDUIT, recipeBook);
+  }
+
+  private void addRecipe(Recipe recipe, Material material, KnowledgeBookMeta recipeBook) {
+    if(Bukkit.addRecipe(recipe)) {
+      NamespacedKey materialKey = material.getKey();
       if(recipeBook != null) {
-        recipeBook.addRecipe(enchantedGoldenAppleKey);
+        recipeBook.addRecipe(materialKey);
       }
-      System.out.println("[hardermode] - Added recipe: " + enchantedGoldenAppleKey);
+      System.out.println("[hardermode] - Added recipe: " + materialKey);
     }
   }
 
@@ -62,11 +68,26 @@ public class Configuration {
     return recipe;
   }
 
+  private ShapedRecipe conduitRecipe() {
+    Material conduitMaterial = Material.CONDUIT;
+    NamespacedKey conduitKey = conduitMaterial.getKey();
+    ItemStack conduit = new ItemStack(conduitMaterial);
+    ShapedRecipe recipe = new ShapedRecipe(conduitKey, conduit);
+    recipe.shape("NNN", "HHH", "NNN");
+    recipe.setIngredient('H', Material.HEART_OF_THE_SEA);
+    recipe.setIngredient('N', Material.NAUTILUS_SHELL);
+    return recipe;
+  }
+
   private void removeRecipes() {
     Iterator<Recipe> recipes = server.recipeIterator();
     while(recipes.hasNext()) {
-      if (recipes.next().getResult().getType() == Material.ENDER_EYE) {
-        System.out.println("[hardermode] - Removing recipe: " + Material.ENDER_EYE.getKey());
+      Material material =  recipes.next().getResult().getType();
+      if (material == Material.ENDER_EYE) {
+        System.out.println("[hardermode] - Removing recipe: " + material.getKey());
+        recipes.remove();
+      } else if (material == Material.CONDUIT) {
+        System.out.println("[hardermode] - Removing recipe: " + material.getKey());
         recipes.remove();
       }
     }
