@@ -14,11 +14,13 @@ public class MeleeWeapon {
     weapons.add(Material.IRON_SWORD);
     weapons.add(Material.DIAMOND_SWORD);
     weapons.add(Material.NETHERITE_SWORD);
+    weapons.add(Material.GOLDEN_SWORD);
     weapons.add(Material.STONE_AXE);
     weapons.add(Material.WOODEN_AXE);
     weapons.add(Material.IRON_AXE);
     weapons.add(Material.DIAMOND_AXE);
     weapons.add(Material.NETHERITE_AXE);
+    weapons.add(Material.GOLDEN_AXE);
     return weapons;
   }
 

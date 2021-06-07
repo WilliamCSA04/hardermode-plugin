@@ -4,13 +4,16 @@ import me.hardermode.buff.Buff;
 import me.hardermode.configuration.Configuration;
 import me.hardermode.helpers.Helpers;
 import me.hardermode.loot.Loot;
+import me.hardermode.meleeweapon.MeleeWeapon;
 import me.hardermode.tippedarrow.TippedArrow;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,6 +23,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.world.LootGenerateEvent;
+import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.Damageable;
@@ -187,9 +191,33 @@ public final class Hardermode extends JavaPlugin implements Listener {
       if(attackDamage != null) {
         Buff.buffAttribute(attackDamage, 0.25);
       }
-
       int arrowCD = monster.getArrowCooldown() / 2;
       monster.setArrowCooldown(arrowCD);
+
+      boolean shouldAddEnchantment = Math.random() < 0.15;
+      if(shouldAddEnchantment) {
+        EntityEquipment equipment = monster.getEquipment();
+        if(equipment != null) {
+          ItemStack item = equipment.getItemInMainHand();
+          NamespacedKey itemName = item.getType().getKey();
+          if(Material.BOW.getKey().equals(itemName)) {
+            int level = Helpers.randomIntMinMax(1, 5);
+            item.addEnchantment(Enchantment.ARROW_DAMAGE, level);
+          } else if(Material.CROSSBOW.getKey().equals(itemName)) {
+            int level = Helpers.randomIntMinMax(1, 4);
+            item.addEnchantment(Enchantment.PIERCING, level);
+          } else {
+            List<Material> weapons = MeleeWeapon.meleeWeaponMaterials();
+            for(Material weapon : weapons) {
+              if(weapon.getKey().equals(itemName)) {
+                int level = Helpers.randomIntMinMax(1, 5);
+                item.addEnchantment(Enchantment.DAMAGE_ALL, level);
+              }
+            }
+          }
+          equipment.setItemInMainHand(item);
+        }
+      }
     }
   }
 
@@ -349,7 +377,6 @@ public final class Hardermode extends JavaPlugin implements Listener {
           }
         }
       }
-
     }
   }
 
