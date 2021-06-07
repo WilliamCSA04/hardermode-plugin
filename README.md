@@ -50,6 +50,12 @@ crossbow, have a 15% to have an enchantment on it:
 explosions will destroy a shield if a
 player blocks the explosion.
 
+### Illagers
+
+Any [Illager](https://minecraft.fandom.com/wiki/Illager)
+have a 20% chance to prevent its own death by using
+a [totem of undying](https://minecraft.fandom.com/wiki/Totem_of_Undying);
+
 ### Illusioner
 
 Whenever a non-spellcaster [Illager](https://minecraft.fandom.com/wiki/Illager)
@@ -93,7 +99,7 @@ It also got buffed:
 
 #### Battle
 
-While fighting a Elder guardian, you will need to take
+While fighting an Elder guardian, you will need to take
 extra care. Hitting it with a melee attack will cause
 the damager to be poisoned, if the damage is caused by
 a projectile, its shooter will receive the blindness effect.
