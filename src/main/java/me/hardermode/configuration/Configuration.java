@@ -101,7 +101,7 @@ public class Configuration {
     materials.add(Material.CRIMSON_PLANKS);
     RecipeChoice planks = new RecipeChoice.MaterialChoice(materials);
     recipe.setIngredient('W', planks)
-            .setIngredient('I', Material.IRON_INGOT);
+            .setIngredient('I', Material.IRON_NUGGET);
     return recipe;
   }
 

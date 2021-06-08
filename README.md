@@ -155,4 +155,7 @@ only be found by looting chests.
   
   ![Conduit craft](./assets/Conduit.png)
 
-- Chests now require an iron ingot be crafted.
+- Chests now require not only planks but also an
+  iron nugget.
+
+  ![Conduit craft](./assets/Chest.png)
