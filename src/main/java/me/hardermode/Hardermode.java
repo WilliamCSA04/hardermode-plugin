@@ -276,7 +276,7 @@ public final class Hardermode extends JavaPlugin implements Listener {
     Illager illager = Helpers.cast(event.getEntity(), Illager.class);
     if(illager != null) {
 
-      if(illager.getHealth() - event.getDamage() < 1) {
+      if(illager.getHealth() - event.getFinalDamage() < 1) {
         boolean preventDeath = Math.random() < 0.25;
         if(preventDeath) {
           illager.getEquipment().setItemInOffHand(new ItemStack(Material.TOTEM_OF_UNDYING));
