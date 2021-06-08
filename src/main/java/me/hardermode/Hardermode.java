@@ -184,12 +184,20 @@ public final class Hardermode extends JavaPlugin implements Listener {
     if(monster != null) {
       AttributeInstance maxHealthAttribute = monster.getAttribute(Attribute.GENERIC_MAX_HEALTH);
       AttributeInstance attackDamage = monster.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
+      AttributeInstance baseArmor = monster.getAttribute(Attribute.GENERIC_ARMOR);
+      boolean isElderGuardian = Helpers.cast(monster, ElderGuardian.class) != null;
       if(maxHealthAttribute != null) {
-        double buff = Buff.buffAttribute(maxHealthAttribute, 0.5);
+        double toBuff = isElderGuardian ? 0.7 : 0.5;
+        double buff = Buff.buffAttribute(maxHealthAttribute, toBuff);
         monster.setHealth(buff);
       }
       if(attackDamage != null) {
-        Buff.buffAttribute(attackDamage, 80);
+        double toBuff = isElderGuardian ? 1 : 0.8;
+        Buff.buffAttribute(attackDamage, toBuff);
+      }
+      if(baseArmor != null) {
+        double toBuff = isElderGuardian ? 0.3 : 0.5;
+        Buff.buffAttribute(attackDamage, toBuff);
       }
       int arrowCD = monster.getArrowCooldown() / 2;
       monster.setArrowCooldown(arrowCD);
@@ -217,26 +225,6 @@ public final class Hardermode extends JavaPlugin implements Listener {
           }
           equipment.setItemInMainHand(item);
         }
-      }
-    }
-  }
-
-  @EventHandler
-  public void onElderGuardianSpawn(CreatureSpawnEvent event) {
-    ElderGuardian elderGuardian = Helpers.cast(event.getEntity(), ElderGuardian.class);
-    if(elderGuardian != null) {
-      AttributeInstance maxHealth = elderGuardian.getAttribute(Attribute.GENERIC_MAX_HEALTH);
-      AttributeInstance attackDamage = elderGuardian.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
-      AttributeInstance armor = elderGuardian.getAttribute(Attribute.GENERIC_ARMOR);
-      if(maxHealth != null) {
-        double buff = Buff.buffAttribute(maxHealth, 0.4);
-        elderGuardian.setHealth(buff);
-      }
-      if(attackDamage != null) {
-        Buff.buffAttribute(attackDamage, 0.2);
-      }
-      if(armor != null) {
-        Buff.buffAttribute(armor, 0.7);
       }
     }
   }

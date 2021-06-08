@@ -35,6 +35,7 @@ will spawn with different status from Vanilla:
 
 - 50% maximum health increased;
 - 80% base damage increased;
+- 30% base armor increased;
 - 50% arrow cooldown reduction;
 
 Also, any monster that spawns with a sword, axe, bow or
@@ -93,9 +94,9 @@ now have always to drop a [trident](https://minecraft.fandom.com/wiki/Trident)
 and have 30% chance to drop an [Conduit](https://minecraft.fandom.com/wiki/Conduit).
 It also got buffed:
 
-- 40% more total health;
-- 20% more base damage;
-- 70% more base armor;
+- 80% more total health;
+- 100% more base damage;
+- 50% more base armor;
 
 #### Battle
 
