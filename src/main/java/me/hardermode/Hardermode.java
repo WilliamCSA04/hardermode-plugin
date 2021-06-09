@@ -219,7 +219,7 @@ public final class Hardermode extends JavaPlugin implements Listener {
         monster.setHealth(buff);
       }
       if(attackDamage != null) {
-        double toBuff = isElderGuardian ? 1 : 0.8;
+        double toBuff = isElderGuardian ? 0.7 : 0.5;
         Buff.buffAttribute(attackDamage, toBuff);
       }
       if(baseArmor != null) {

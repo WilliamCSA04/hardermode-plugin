@@ -27,6 +27,14 @@ Some gameplay aspects changed:
 - Any arrow with potion effect that hits a living
   entity that already has that same effect will
   have that effect amplified, capped at level V.
+- Player that take damage from other entities and do not
+  have a full set of armor will receive a damage
+  penalty depending on of which piece, and many are 
+  missing:
+  - Missing chestplate penalty: 50% extra damage taken;
+  - Missing leggings penalty: 35% extra damage taken;
+  - Missing helmet penalty: 10% extra damage taken;
+  - Missing boots penalty: 5% extra damage taken;
 
 ## Mobs
 
@@ -34,7 +42,7 @@ Every mob categorized as [monster](https://hub.spigotmc.org/javadocs/spigot/org/
 will spawn with different status from Vanilla:
 
 - 50% maximum health increased;
-- 80% base damage increased;
+- 50% base damage increased;
 - 30% base armor increased;
 - 50% arrow cooldown reduction;
 
@@ -95,7 +103,7 @@ and have 30% chance to drop an [Conduit](https://minecraft.fandom.com/wiki/Condu
 It also got buffed:
 
 - 80% more total health;
-- 100% more base damage;
+- 70% more base damage;
 - 50% more base armor;
 
 #### Battle
