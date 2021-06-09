@@ -179,6 +179,33 @@ public final class Hardermode extends JavaPlugin implements Listener {
   }
 
   @EventHandler
+  public void onUnarmoredPlayerGetDamaged(EntityDamageByEntityEvent event) {
+    Player player = Helpers.cast(event.getEntity(), Player.class);
+    if(player != null) {
+      ItemStack helmet = player.getInventory().getHelmet();
+      ItemStack chestplate = player.getInventory().getChestplate();
+      ItemStack leggings = player.getInventory().getLeggings();
+      ItemStack boots = player.getInventory().getBoots();
+      double extraDamagePercentage = 0;
+      if(helmet == null) {
+        extraDamagePercentage += 0.10;
+      }
+      if(chestplate == null) {
+        extraDamagePercentage += 0.50;
+      }
+      if(leggings == null) {
+        extraDamagePercentage += 0.35;
+      }
+      if(boots == null) {
+        extraDamagePercentage += 0.5;
+      }
+      double damage = event.getDamage();
+      double damagePenalty = damage + (damage * extraDamagePercentage);
+      event.setDamage(damagePenalty);
+    }
+  }
+
+  @EventHandler
   public void onMonsterSpawnBuffIt(CreatureSpawnEvent event) {
     Monster monster = Helpers.castMonster(event.getEntity());
     if(monster != null) {
