@@ -191,13 +191,13 @@ public final class Hardermode extends JavaPlugin implements Listener {
         extraDamagePercentage += 0.10;
       }
       if(chestplate == null) {
-        extraDamagePercentage += 0.50;
+        extraDamagePercentage += 0.5;
       }
       if(leggings == null) {
         extraDamagePercentage += 0.35;
       }
       if(boots == null) {
-        extraDamagePercentage += 0.5;
+        extraDamagePercentage += 0.05;
       }
       double damage = event.getDamage();
       double damagePenalty = damage + (damage * extraDamagePercentage);
