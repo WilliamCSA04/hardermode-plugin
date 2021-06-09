@@ -118,6 +118,42 @@ public class Configuration {
       } else if (material == Material.CHEST) {
         System.out.println("[hardermode] - Removing recipe: " + material.getKey());
         recipes.remove();
+      } else if (material == Material.IRON_CHESTPLATE) {
+        System.out.println("[hardermode] - Removing recipe: " + material.getKey());
+        recipes.remove();
+      } else if (material == Material.IRON_HELMET) {
+        System.out.println("[hardermode] - Removing recipe: " + material.getKey());
+        recipes.remove();
+      } else if (material == Material.IRON_BOOTS) {
+        System.out.println("[hardermode] - Removing recipe: " + material.getKey());
+        recipes.remove();
+      } else if (material == Material.IRON_LEGGINGS) {
+        System.out.println("[hardermode] - Removing recipe: " + material.getKey());
+        recipes.remove();
+      } else if (material == Material.GOLDEN_CHESTPLATE) {
+        System.out.println("[hardermode] - Removing recipe: " + material.getKey());
+        recipes.remove();
+      } else if (material == Material.GOLDEN_HELMET) {
+        System.out.println("[hardermode] - Removing recipe: " + material.getKey());
+        recipes.remove();
+      } else if (material == Material.GOLDEN_BOOTS) {
+        System.out.println("[hardermode] - Removing recipe: " + material.getKey());
+        recipes.remove();
+      } else if (material == Material.GOLDEN_LEGGINGS) {
+        System.out.println("[hardermode] - Removing recipe: " + material.getKey());
+        recipes.remove();
+      } else if (material == Material.DIAMOND_CHESTPLATE) {
+        System.out.println("[hardermode] - Removing recipe: " + material.getKey());
+        recipes.remove();
+      } else if (material == Material.DIAMOND_HELMET) {
+        System.out.println("[hardermode] - Removing recipe: " + material.getKey());
+        recipes.remove();
+      } else if (material == Material.DIAMOND_BOOTS) {
+        System.out.println("[hardermode] - Removing recipe: " + material.getKey());
+        recipes.remove();
+      } else if (material == Material.DIAMOND_LEGGINGS) {
+        System.out.println("[hardermode] - Removing recipe: " + material.getKey());
+        recipes.remove();
       }
     }
   }
