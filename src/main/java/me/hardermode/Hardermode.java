@@ -17,10 +17,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.CreatureSpawnEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.EntityShootBowEvent;
+import org.bukkit.event.entity.*;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.world.LootGenerateEvent;
 import org.bukkit.inventory.EntityEquipment;
@@ -57,11 +54,12 @@ public final class Hardermode extends JavaPlugin implements Listener {
 
   @EventHandler
   public void onCreeperExplosion(EntityDamageByEntityEvent event) {
-    boolean isCreeperExplosion = event.getDamager() instanceof Creeper;
+    Creeper creeper = Helpers.cast(event.getDamager(), Creeper.class);
+    boolean isCreeperExplosion = creeper != null;
     if(isCreeperExplosion) {
-      boolean isPlayer = event.getEntity() instanceof Player;
+      Player player = Helpers.cast(event.getEntity(), Player.class);
+      boolean isPlayer = player != null;
       if(isPlayer) {
-        Player player = (Player) event.getEntity();
         if(player.isBlocking()) {
           PlayerInventory inventory = player.getInventory();
           ItemStack shield = Helpers.getAnItemFromPlayersHand(inventory, Material.SHIELD);
@@ -72,7 +70,42 @@ public final class Hardermode extends JavaPlugin implements Listener {
               shield.setItemMeta((ItemMeta) damagedShield);
             }
           }
-
+        } else if(creeper.isPowered()) {
+          PlayerInventory inventory = player.getInventory();
+          ItemStack helmet = inventory.getHelmet();
+          ItemStack chestplate = inventory.getChestplate();
+          ItemStack leggings = inventory.getLeggings();
+          ItemStack boots = inventory.getBoots();
+          double damage = event.getDamage();
+          int penaltyDamageOnArmor = (int) (damage * 2);
+          if(helmet != null) {
+            if(helmet.getType() != Material.NETHERITE_HELMET) {
+              Damageable helmetDamageable = Helpers.cast(helmet.getItemMeta(), Damageable.class);
+              helmetDamageable.setDamage(penaltyDamageOnArmor);
+              helmet.setItemMeta((ItemMeta) helmetDamageable);
+            }
+          }
+          if(chestplate != null) {
+            if(chestplate.getType() != Material.NETHERITE_CHESTPLATE) {
+              Damageable chestplateDamageable = Helpers.cast(chestplate.getItemMeta(), Damageable.class);
+              chestplateDamageable.setDamage(penaltyDamageOnArmor);
+              chestplate.setItemMeta((ItemMeta) chestplateDamageable);
+            }
+          }
+          if(leggings != null) {
+            if(leggings.getType() != Material.NETHERITE_LEGGINGS) {
+              Damageable leggingsDamageable = Helpers.cast(leggings.getItemMeta(), Damageable.class);
+              leggingsDamageable.setDamage(penaltyDamageOnArmor);
+              leggings.setItemMeta((ItemMeta) leggingsDamageable);
+            }
+          }
+          if(boots != null) {
+            if(boots.getType() != Material.NETHERITE_BOOTS) {
+              Damageable bootsDamageable = Helpers.cast(boots.getItemMeta(), Damageable.class);
+              bootsDamageable.setDamage(penaltyDamageOnArmor);
+              boots.setItemMeta((ItemMeta) bootsDamageable);
+            }
+          }
         }
       }
     }
