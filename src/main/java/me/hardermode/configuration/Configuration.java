@@ -165,7 +165,7 @@ public class Configuration {
 
   private ShapedRecipe ironHelmetRecipe() {
     ShapedRecipe recipe = (ShapedRecipe) getRecipeFromMaterial(Material.IRON_HELMET);
-    recipe.shape("III", "ICI", "  ");
+    recipe.shape("III", "ICI", "   ");
     recipe.setIngredient('C', Material.LEATHER_HELMET);
     recipe.setIngredient('I', Material.IRON_INGOT);
     return recipe;
@@ -173,7 +173,7 @@ public class Configuration {
 
   private ShapedRecipe goldenHelmetRecipe() {
     ShapedRecipe recipe = (ShapedRecipe) getRecipeFromMaterial(Material.GOLDEN_HELMET);
-    recipe.shape("III", "ICI", "  ");
+    recipe.shape("III", "ICI", "   ");
     recipe.setIngredient('C', Material.LEATHER_HELMET);
     recipe.setIngredient('I', Material.GOLD_INGOT);
     return recipe;
@@ -181,7 +181,7 @@ public class Configuration {
 
   private ShapedRecipe diamondHelmetRecipe() {
     ShapedRecipe recipe = (ShapedRecipe) getRecipeFromMaterial(Material.DIAMOND_HELMET);
-    recipe.shape("III", "ICI", "  ");
+    recipe.shape("III", "ICI", "   ");
     recipe.setIngredient('C', Material.LEATHER_HELMET);
     recipe.setIngredient('I', Material.DIAMOND);
     return recipe;
@@ -189,7 +189,7 @@ public class Configuration {
 
   private ShapedRecipe ironBootsRecipe() {
     ShapedRecipe recipe = (ShapedRecipe) getRecipeFromMaterial(Material.IRON_BOOTS);
-    recipe.shape("  ", "ICI", "I I");
+    recipe.shape("   ", "ICI", "I I");
     recipe.setIngredient('C', Material.LEATHER_BOOTS);
     recipe.setIngredient('I', Material.IRON_INGOT);
     return recipe;
@@ -197,7 +197,7 @@ public class Configuration {
 
   private ShapedRecipe goldenBootsRecipe() {
     ShapedRecipe recipe = (ShapedRecipe) getRecipeFromMaterial(Material.GOLDEN_BOOTS);
-    recipe.shape("  ", "ICI", "I I");
+    recipe.shape("   ", "ICI", "I I");
     recipe.setIngredient('C', Material.LEATHER_BOOTS);
     recipe.setIngredient('I', Material.GOLD_INGOT);
     return recipe;
@@ -205,7 +205,7 @@ public class Configuration {
 
   private ShapedRecipe diamondBootsRecipe() {
     ShapedRecipe recipe = (ShapedRecipe) getRecipeFromMaterial(Material.DIAMOND_BOOTS);
-    recipe.shape("  ", "ICI", "I I");
+    recipe.shape("   ", "ICI", "I I");
     recipe.setIngredient('C', Material.LEATHER_BOOTS);
     recipe.setIngredient('I', Material.DIAMOND);
     return recipe;
