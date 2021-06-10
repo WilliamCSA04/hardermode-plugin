@@ -56,7 +56,9 @@ crossbow, have a 25% to have an enchantment on it:
 
 [Creeper](https://minecraft.fandom.com/wiki/Creeper)
 explosions will destroy a shield if a
-player blocks the explosion.
+player blocks the explosion. If the creeper is charged,
+and you do not block it, your armor will take twice your
+damage.
 
 ### Illagers
 
