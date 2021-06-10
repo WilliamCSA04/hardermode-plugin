@@ -168,3 +168,30 @@ only be found by looting chests.
   iron nugget.
 
   ![Conduit craft](assets/recipes/chest.png)
+
+- All diamonds, iron and golden armors have its recipes
+  changed:
+  
+  ![Diamond Helmet](assets/recipes/diamond_helmet.png)
+
+  ![Diamond Chestplate](assets/recipes/diamond_chestplate.png)
+  
+  ![Diamond leggings](assets/recipes/diamond_leggings.png)
+  
+  ![Diamond boots](assets/recipes/diamond_boots.png)
+
+  ![Golden Helmet](assets/recipes/golden_helmet.png)
+
+  ![Golden Chestplate](assets/recipes/golden_chestplate.png)
+
+  ![Golden leggings](assets/recipes/golden_leggings.png)
+
+  ![Golden boots](assets/recipes/golden_boots.png)
+
+  ![Iron Helmet](assets/recipes/iron_helmet.png)
+
+  ![Iron Chestplate](assets/recipes/iron_chestplate.png)
+
+  ![Iron leggings](assets/recipes/iron_leggings.png)
+
+  ![Iron boots](assets/recipes/iron_boots.png)
