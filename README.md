@@ -159,12 +159,12 @@ only be found by looting chests.
 - Enchanted Golden Apple is now craftable with emerald
   block, nether star, golden apple and lapiz block;
   
-  ![Enchanted Golden Apple craft](./assets/Enchanted_golden_apple_craft.png)
+  ![Enchanted Golden Apple craft](assets/recipes/enchanted_golden_apple_craft.png)
 - Conduit craft has changed;
   
-  ![Conduit craft](./assets/Conduit.png)
+  ![Conduit craft](assets/recipes/conduit.png)
 
 - Chests now require not only planks but also an
   iron nugget.
 
-  ![Conduit craft](./assets/Chest.png)
+  ![Conduit craft](assets/recipes/chest.png)
