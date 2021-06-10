@@ -22,12 +22,11 @@ that minecraft, in my opinion, lacks.
 
 Some gameplay aspects changed:
 
-- Players can take damage 50% faster after take 
-  damage.
+- Players no damage ticks reduced by 50%.
 - Any arrow with potion effect that hits a living
   entity that already has that same effect will
   have that effect amplified, capped at level V.
-- Player that take damage from other entities and do not
+- Players that take damage from other entities and do not
   have a full set of armor will receive a damage
   penalty depending on of which piece, and many are 
   missing:
