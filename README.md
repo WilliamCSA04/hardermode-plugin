@@ -169,7 +169,7 @@ only be found by looting chests.
 
   ![Conduit craft](assets/recipes/chest.png)
 
-- All diamonds, iron and golden armors have its recipes
+- All diamonds, iron and golden armors have their recipes
   changed:
   
   ![Diamond Helmet](assets/recipes/diamond_helmet.png)
