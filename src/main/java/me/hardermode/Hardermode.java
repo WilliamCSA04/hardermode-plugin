@@ -2,6 +2,7 @@ package me.hardermode;
 
 import me.hardermode.buff.Buff;
 import me.hardermode.configuration.Configuration;
+import me.hardermode.customitems.LitwarAxe;
 import me.hardermode.helpers.Helpers;
 import me.hardermode.loot.Loot;
 import me.hardermode.meleeweapon.MeleeWeapon;
@@ -51,6 +52,11 @@ public final class Hardermode extends JavaPlugin implements Listener {
     server.getPluginManager().registerEvents(this, this);
     Configuration.startConfiguration(server).configure();
     world = server.getWorlds().get(0);
+  }
+
+  @EventHandler
+  public void onGenericEntityDamageByEntityEvent(EntityDamageByEntityEvent event) {
+    LitwarAxe.onEntityDamageByEntityEvent(event, server, this);
   }
 
   @EventHandler
