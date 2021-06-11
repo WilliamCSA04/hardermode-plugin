@@ -41,9 +41,10 @@ Every mob categorized as [monster](https://hub.spigotmc.org/javadocs/spigot/org/
 will spawn with different status from Vanilla:
 
 - 50% maximum health increased;
-- 50% base damage increased;
+- 60% base damage increased;
 - 30% base armor increased;
 - 50% arrow cooldown reduction;
+- 100% follow range increased;
 
 Also, any monster that spawns with a sword, axe, bow or
 crossbow, have a 25% to have an enchantment on it:
