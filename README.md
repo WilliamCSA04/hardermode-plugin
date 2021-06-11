@@ -202,3 +202,13 @@ only be found by looting chests.
   ![Iron leggings](assets/recipes/iron_leggings.png)
 
   ![Iron boots](assets/recipes/iron_boots.png)
+
+## Custom Items
+
+There are items that have special name and lore. Those
+items have special properties, if that item is made
+for a specific player, that player will have special
+interaction with it.
+
+- Litwar's axe: A diamond axe that invoke three lighting
+from skies after hitting a living entity.
