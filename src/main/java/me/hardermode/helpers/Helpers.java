@@ -1,13 +1,13 @@
 package me.hardermode.helpers;
 
+import me.hardermode.buff.Buff;
 import org.bukkit.Material;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Monster;
-import org.bukkit.entity.Player;
+import org.bukkit.attribute.AttributeInstance;
+import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
+import javax.management.Attribute;
 import java.util.Random;
 
 public class Helpers {
@@ -30,6 +30,13 @@ public class Helpers {
       return inventory.getItemInOffHand();
     }
     return null;
+  }
+
+  public static double changeGenericAttributes(AttributeInstance attribute, double toBuff) {
+    if(attribute != null) {
+      return Buff.buffAttribute(attribute, toBuff);
+    }
+    return 0;
   }
 
   /**

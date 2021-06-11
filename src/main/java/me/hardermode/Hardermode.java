@@ -246,20 +246,16 @@ public final class Hardermode extends JavaPlugin implements Listener {
       AttributeInstance maxHealthAttribute = monster.getAttribute(Attribute.GENERIC_MAX_HEALTH);
       AttributeInstance attackDamage = monster.getAttribute(Attribute.GENERIC_ATTACK_DAMAGE);
       AttributeInstance baseArmor = monster.getAttribute(Attribute.GENERIC_ARMOR);
+      AttributeInstance followRange = monster.getAttribute(Attribute.GENERIC_FOLLOW_RANGE);
       boolean isElderGuardian = Helpers.cast(monster, ElderGuardian.class) != null;
-      if(maxHealthAttribute != null) {
-        double toBuff = isElderGuardian ? 0.7 : 0.5;
-        double buff = Buff.buffAttribute(maxHealthAttribute, toBuff);
-        monster.setHealth(buff);
-      }
-      if(attackDamage != null) {
-        double toBuff = isElderGuardian ? 0.7 : 0.5;
-        Buff.buffAttribute(attackDamage, toBuff);
-      }
-      if(baseArmor != null) {
-        double toBuff = isElderGuardian ? 0.3 : 0.5;
-        Buff.buffAttribute(attackDamage, toBuff);
-      }
+      double toBuff = isElderGuardian ? 0.7 : 0.6;
+      double buffed = Helpers.changeGenericAttributes(maxHealthAttribute, toBuff);
+      monster.setHealth(buffed);
+      Helpers.changeGenericAttributes(attackDamage, toBuff);
+      toBuff = isElderGuardian ? 0.3 : 0.5;
+      Helpers.changeGenericAttributes(baseArmor, toBuff);
+      toBuff = followRange.getBaseValue() * 2;
+      Helpers.changeGenericAttributes(followRange, toBuff);
       int arrowCD = monster.getArrowCooldown() / 2;
       monster.setArrowCooldown(arrowCD);
 
