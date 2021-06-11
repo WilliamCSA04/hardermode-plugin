@@ -33,6 +33,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
+import sun.jvm.hotspot.oops.Metadata;
 
 import java.util.*;
 
@@ -262,10 +263,21 @@ public final class Hardermode extends JavaPlugin implements Listener {
       int arrowCD = monster.getArrowCooldown() / 2;
       monster.setArrowCooldown(arrowCD);
 
+      EntityEquipment equipment = monster.getEquipment();
+      boolean noEquipment = equipment != null;
+      if(noEquipment && monster instanceof Zombie) {
+        boolean shouldAddAnEquipment = Math.random() < 0.15;
+        if(shouldAddAnEquipment) {
+          List<Material> weapons = MeleeWeapon.meleeWeaponMaterials();
+          int randomItemPosition = new Random().nextInt(weapons.size());
+          ItemStack item = new ItemStack(weapons.get(randomItemPosition));
+          equipment.setItemInMainHand(item);
+          noEquipment = false;
+        }
+      }
       boolean shouldAddEnchantment = Math.random() < 0.25;
       if(shouldAddEnchantment) {
-        EntityEquipment equipment = monster.getEquipment();
-        if(equipment != null) {
+        if(noEquipment) {
           ItemStack item = equipment.getItemInMainHand();
           NamespacedKey itemName = item.getType().getKey();
           if(Material.BOW.getKey().equals(itemName)) {
