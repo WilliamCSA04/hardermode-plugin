@@ -88,11 +88,16 @@ among 4:
 If a skeleton spawn with any of those arrows,
 he will drop it when killed.
 
-### Stray
+#### Stray
 
 Stray a 10% chance to drop a [ice](https://minecraft.fandom.com/wiki/Ice).
 
-### Husk
+### Zombie
+
+Any zombie has a 15% chance to spawn with a sword, or
+an axe both made of any material.
+
+#### Husk
 
 Husk has a 10% chance to drop a sand block.
 
